@@ -1,12 +1,19 @@
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
+import Movie from "./pages/Movie/Movie";
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>
+    <div className="app">
       <Navbar />
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/movie/:id" element={<Movie />} />
+      </Routes>
       <Footer />
     </div>
   );

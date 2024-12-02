@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import MovieRecipeDisplay from "../MovieRecipeDisplay/MovieRecipeDisplay";
+import { useNavigate } from "react-router-dom";
 
 const MovieGenreDisplay = () => {
   const [genres, setGenres] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState(null);
   const MOVIE_API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
   const API_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${MOVIE_API_KEY}&language=en-US`;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -20,28 +20,26 @@ const MovieGenreDisplay = () => {
     };
 
     fetchGenres();
-  }, []);
+  }, [API_URL]);
 
-  const handleGenreClick = (genre) => {
-    setSelectedGenre(genre); 
+  const handleGenreClick = (id) => {
+    navigate(`/movie/${id}`);
   };
 
-  if (selectedGenre) {
-    return <MovieRecipeDisplay genre={selectedGenre} />;
-  }
-
   return (
-    <div className="p-10 font-publico">
-      <h1 className="text-5xl sm:text-7xl text-center p-10">
+    <div className="p-12 font-publico">
+      <h1 className="text-5xl text-gray-800 sm:text-7xl text-center p-10">
         Choose Your Genre
       </h1>
-      <div className="grid grid-cols-4 gap-2 mt-10">
+      <div className="grid grid-cols-3 gap-2 mt-10">
         {genres.map((genre) => (
           <div
             key={genre.id}
-            className="p-6 bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-700 transition duration-300 ease-in-out flex items-end h-40" onClick={() => handleGenreClick(genre)} style={{ cursor: "pointer" }}
+            className="p-6 bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-700 transition duration-300 ease-in-out flex items-end h-40"
+            style={{ cursor: "pointer" }}
+            onClick={() => handleGenreClick(genre.id)}
           >
-            <p className="text-left mb-2 text-3xl">{genre.name}</p>
+              <p className="text-left mb-2 text-3xl">{genre.name}</p>
           </div>
         ))}
       </div>

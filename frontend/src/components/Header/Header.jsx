@@ -25,8 +25,7 @@ const Header = () => {
           </p>
         </div>
       </div>
-      <ChevronDoubleDownIcon class="h-6 w-6 text-gray-500" />
-
+      <ChevronDoubleDownIcon className="absolute bottom-10 right-10 h-16 w-16 text-white animate-bounce" />
     </div>
   );
 };
