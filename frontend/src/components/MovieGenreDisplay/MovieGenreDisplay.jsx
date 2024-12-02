@@ -5,8 +5,8 @@ import MovieRecipeDisplay from "../MovieRecipeDisplay/MovieRecipeDisplay";
 const MovieGenreDisplay = () => {
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState(null);
-  const API_KEY = "e03fe03a5210e4c47d6d31c407ec7dcd";
-  const API_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
+  const MOVIE_API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
+  const API_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${MOVIE_API_KEY}&language=en-US`;
 
   useEffect(() => {
     const fetchGenres = async () => {

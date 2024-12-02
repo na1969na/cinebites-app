@@ -37,7 +37,7 @@ const MovieRecipeDisplay = ({ genre }) => {
   return (
     <div className="p-10 font-publico flex">
       <div className="w-3/4">
-        <h1 className="text-5xl font-semibold tracking-tight sm:text-7xl text-center">
+        <h1 className="text-5xl text-gray-800 sm:text-7xl text-center">
           Movies in {genre.name}
         </h1>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-10">
