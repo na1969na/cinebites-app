@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const MOVIE_API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
+const API_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${MOVIE_API_KEY}&language=en-US`;
+
 const MovieGenreDisplay = () => {
   const [genres, setGenres] = useState([]);
-  const MOVIE_API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
-  const API_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${MOVIE_API_KEY}&language=en-US`;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const MovieGenreDisplay = () => {
     };
 
     fetchGenres();
-  }, [API_URL]);
+  }, []);
 
   const handleGenreClick = (id) => {
     navigate(`/movie/${id}`);
