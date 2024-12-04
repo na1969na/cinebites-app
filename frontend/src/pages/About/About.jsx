@@ -33,14 +33,15 @@ const About = () => {
   return (
     <div className="font-dmsans">
       <div
-        className="bg-cover bg-top-left h-[70vh] w-full relative"
+        className="bg-cover bg-center h-screen w-full relative"
         style={{
           backgroundImage: `url(${images[currentImageIndex]})`,
         }}
       >
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative p-10">
-          <h1 className="text-9xl font-publico text-white">
+        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="relative p-10 flex flex-col justify-center h-full">
+          <h1 className="text-7xl sm:text-9xl font-publico text-white w-auto sm:static sm:top-auto sm:bottom-auto sm:transform-none absolute bottom-10 left-1/2 transform -translate-x-1/2 sm:translate-x-0">
+            
             WHAT <br />
             IS
             <br />
@@ -48,12 +49,12 @@ const About = () => {
           </h1>
         </div>
       </div>
-      <div className="flex flex-row gap-6 w-full p-10 dark:bg-zinc-900 dark:text-customBackground">
-        <h2 className="text-8xl font-helvetica w-full sm:w-[40rem] ">
+      <div className="flex flex-col md:flex-row gap-6 w-full p-10 dark:bg-zinc-900 dark:text-customBackground">
+        <h2 className="text-3xl sm:text-6xl md:text-8xl font-helvetica w-full md:w-[40rem] ">
           Discover Movies, <br />
           Delight in Recipes
         </h2>
-        <p className="text-2xl w-full sm:w-[45rem]">
+        <p className="text-lg md:text-2xl w-full md:w-[45rem]">
           At CineBites, we believe in making your movie experience even more
           enjoyable by pairing films with delicious recipes. Our app is designed
           to connect your love for cinema with culinary inspiration, all in one
@@ -67,11 +68,11 @@ const About = () => {
             /> */}
         </div>
       </div>
-      <div className="flex flex-row-reverse gap-6 w-full p-10 bg-accentBackground">
-        <h2 className="text-8xl font-helvetica w-full sm:w-[40rem] text-right">
+      <div className="flex flex-col md:flex-row-reverse gap-6 w-full p-10 bg-accentBackground">
+        <h2 className="text-3xl sm:text-6xl md:text-8xl font-helvetica w-full md:w-[40rem] text-right">
           Why CineBites?
         </h2>
-        <p className="text-2xl w-full sm:w-[45rem]">
+        <p className="text-lg md:text-2xl w-full md:w-[45rem]">
           We aim to transform the way you experience movies by adding a
           flavorful twist. CineBites is more than just an app – it’s a community
           for movie buffs and food lovers alike. Start your journey with
