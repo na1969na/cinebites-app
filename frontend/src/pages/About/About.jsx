@@ -1,68 +1,41 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-
-const MOVIE_API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
-const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
-const MOVIE_IMAGE_MAP = [
-  { movieId: 27205, index: 12 },
-  { movieId: 437586, index: 3 },
-  { movieId: 39210, index: 4 },
-  { movieId: 120467, index: 29 },
-];
+import useMovieData from "../../hooks/useMovieData";
 
 const About = () => {
   const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { fetchImages } = useMovieData();
 
   useEffect(() => {
-    const fetchImages = async () => {
-      const fetchedImages = [];
+    const imageMap = [
+      { movieId: 398818, index: 9 },
+      { movieId: 437586, index: 3 },
+      { movieId: 13531, index: 1 },
+      { movieId: 120467, index: 29 },
+      { movieId: 16664, index: 17 },
+    ];
 
-      try {
-        for (const { movieId, index } of MOVIE_IMAGE_MAP) {
-          const response = await axios.get(
-            `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${MOVIE_API_KEY}`
-          );
-          const backdrops = response.data.backdrops;
-          const selectedImage = backdrops[index];
-          console.log(backdrops);
-          if (selectedImage) {
-            fetchedImages.push(
-              `${TMDB_IMAGE_BASE_URL}${selectedImage.file_path}`
-            );
-          } else {
-            console.warn(
-              `Image at index ${index} not found for movie ID: ${movieId}`
-            );
-          }
-        }
-
-        setImages(fetchedImages);
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
-    };
-
-    fetchImages();
+    fetchImages(imageMap).then((fetchedImages) => {
+      setImages(fetchedImages);
+    });
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000);
+    if (images.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, 4000);
 
-    return () => clearInterval(interval);
-  }, [images]);
+      return () => clearInterval(interval);
+    }
+  }, [images.length]);
 
   return (
     <div className="font-dmsans">
       <div
+        className="bg-cover bg-top-left h-[70vh] w-full"
         style={{
           backgroundImage: `url(${images[currentImageIndex]})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "70vh",
-          width: "100%",
         }}
       >
         <div className="p-10">
@@ -76,7 +49,8 @@ const About = () => {
       </div>
       <div className="flex flex-row gap-6 w-full p-10">
         <h2 className="text-8xl font-helvetica w-full sm:w-[40rem]">
-          Discover Movies, <br/>Delight in Recipes
+          Discover Movies, <br />
+          Delight in Recipes
         </h2>
         <p className="text-2xl w-full sm:w-[45rem]">
           At CineBites, we believe in making your movie experience even more

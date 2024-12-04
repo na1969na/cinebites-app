@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <header className="bg-customBackground sticky top-0 z-50">
+    <header className="bg-customBackground dark:bg-black sticky top-0 z-50">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-3"
         aria-label="Global"
@@ -14,7 +14,7 @@ const Navbar = () => {
           </a>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="/about" className="text-sm/6 font-semibold text-gray-900">
+          <a href="/about" className="text-lg font-semibold text-gray-900">
             About
           </a>
         </div>

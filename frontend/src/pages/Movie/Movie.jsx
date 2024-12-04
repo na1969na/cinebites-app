@@ -1,13 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { PlayIcon } from "@heroicons/react/24/outline";
 import useMovieData from "../../hooks/useMovieData";
 
 const Movie = () => {
-  const { id } = useParams();
+  const location = useLocation();
+  const { genreId, genreName } = location.state || {};
   const [sidebarWidth, setSidebarWidth] = useState(250);
   const [isResizing, setIsResizing] = useState(false);
+  const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [hoveredMovie, setHoveredMovie] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,14 +19,16 @@ const Movie = () => {
   const MIN_SIDEBAR_WIDTH = 200;
 
   const {
-    movies,
-    genreName,
     recipes,
     movieDetails,
-    director,
+    fetchMovies,
     fetchMovieDetails,
     fetchMovieCredits,
-  } = useMovieData(id);
+  } = useMovieData(genreId);
+
+  useEffect(() => {
+    fetchMovies().then((movies) => setMovies(movies));
+  }, [genreId]);
 
   const handleMouseEnter = async (movieId) => {
     setHoveredMovie(movieId);
@@ -102,46 +106,48 @@ const Movie = () => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 pt-10 px-10 bg-gray-200 overflow-y-auto h-[calc(100vh-200px)]">
+        <div className="pt-10 px-10 divide-y divide-black bg-gray-200 overflow-y-auto h-[calc(100vh-200px)]">
           {filteredMovies.map(
             (movie) =>
               movie.backdrop_path && (
                 <div
                   key={movie.id}
-                  className="p-0.5 rounded-lg transition-transform duration-300 ease-in-out"
-                  onMouseEnter={() => handleMouseEnter(movie.id)}
-                  onMouseLeave={handleMouseLeave}
-                  style={{ cursor: "pointer" }}
+                  className="flex gap-5 py-10 transition-transform duration-300 ease-in-out group"
+                  // onMouseEnter={() => handleMouseEnter(movie.id)}
+                  // onMouseLeave={handleMouseLeave}
                 >
-                  <div className="relative group">
+                  <div className="w-1/2">
                     <img
                       src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
                       alt={movie.title}
+                      className="w-full h-auto rounded-sm"
                     />
-
-                    {hoveredMovie === movie.id && movieDetails && (
-                      <div
-                        className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center
-                  opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-dmsans p-4"
-                      >
-                        <button
-                          // onClick={openModal(movie.id)}
-                          className="border  text-white px-6 py-1 rounded-full flex hover:bg-white hover:text-gray-800 transition"
-                        >
-                          <PlayIcon className="h-6 w-6" />
-                          Trailer
-                        </button>
-                      </div>
-                    )}
                   </div>
 
-                  <p className="mt-2 font-dmsans text-gray-400">
-                    {new Date(movie.release_date).getFullYear()}
-                  </p>
+                  {hoveredMovie === movie.id && movieDetails && (
+                    <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-dmsans p-4 w-1/2">
+                      <button
+                        // onClick={openModal(movie.id)}
+                        className="border  text-white px-6 py-1 rounded-full flex hover:bg-white hover:text-gray-800 transition"
+                      >
+                        <PlayIcon className="h-6 w-6" />
+                        Trailer
+                      </button>
+                    </div>
+                  )}
 
-                  <h2 className="mb-10 font-dmsans text-xl lg:text-2xl font-semibold text-gray-800">
-                    {movie.title}
-                  </h2>
+                  <div className="w-1/2">
+                    <p className="mt-2 font-dmsans text-gray-400">
+                      {new Date(movie.release_date).getFullYear()}
+                    </p>
+                    <h2 className="mb-6 font-dmsans text-xl lg:text-4xl font-semibold text-gray-800">
+                      {movie.title}
+                    </h2>
+                    <p className="font-dmsans mb-6">{movie.overview}</p>
+                    <p className="bg-blue-800 font-dmsans text-white text-sm font-semibold inline-flex items-center p-1.5 rounded dark:bg-blue-200 dark:text-blue-800">
+                      {movie.vote_average.toFixed(1)}
+                    </p>
+                  </div>
                 </div>
               )
           )}
