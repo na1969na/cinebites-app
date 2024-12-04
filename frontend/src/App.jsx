@@ -7,15 +7,15 @@ import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="app">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/movies" element={<Movie />} />
-      </Routes>
-      <Footer />
-    </div>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/movies" element={<Movie />} />
+        </Routes>
+        <Footer />
+      </div>
   );
 };
 

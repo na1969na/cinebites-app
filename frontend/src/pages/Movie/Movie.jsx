@@ -88,25 +88,25 @@ const Movie = () => {
   return (
     <div className="font-publico flex bg-customElements">
       {/* Main Content */}
-      <div className="flex-1">
+      <div className="flex-1 dark:bg-zinc-900">
         <div className="flex justify-between px-10 py-7">
-          <h1 className="text-4xl text-gray-800 sm:text-4xl">
+          <h1 className="text-4xl text-gray-800 dark:text-customBackground sm:text-4xl">
             Movies in <span className="text-accentBackground">{genreName}</span>
           </h1>
-          <div className="flex justify-center font-dmsans border-b-2 border-gray-800 gap-4 mr-10">
+          <div className="flex justify-center font-dmsans border-b-2 border-gray-800 dark:border-customBackground gap-4 mr-10">
             <input
               type="text"
               placeholder="Search movies..."
               value={searchTerm}
               onChange={handleSearchChange}
-              className="p-2 border-none outline-none"
+              className="p-2 border-none outline-none dark:bg-zinc-900 dark:text-customBackground"
             />
             <button>
-              <ArrowRightIcon className="h-6 w-6 text-gray-800" />
+              <ArrowRightIcon className="h-6 w-6 text-gray-800 dark:text-customBackground" />
             </button>
           </div>
         </div>
-        <div className="pt-10 px-10 divide-y divide-black bg-gray-200 overflow-y-auto h-[calc(100vh-200px)]">
+        <div className="pt-10 px-10 divide-y divide-black dark:divide-customBackground bg-gray-200 dark:bg-zinc-800 overflow-y-auto h-[calc(100vh-200px)]">
           {filteredMovies.map(
             (movie) =>
               movie.backdrop_path && (
@@ -140,10 +140,10 @@ const Movie = () => {
                     <p className="mt-2 font-dmsans text-gray-400">
                       {new Date(movie.release_date).getFullYear()}
                     </p>
-                    <h2 className="mb-6 font-dmsans text-xl lg:text-4xl font-semibold text-gray-800">
+                    <h2 className="mb-6 font-dmsans text-xl lg:text-4xl font-semibold text-gray-800 dark:text-customBackground">
                       {movie.title}
                     </h2>
-                    <p className="font-dmsans mb-6">{movie.overview}</p>
+                    <p className="font-dmsans mb-6  dark:text-customBackground">{movie.overview}</p>
                     <p className="bg-blue-800 font-dmsans text-white text-sm font-semibold inline-flex items-center p-1.5 rounded dark:bg-blue-200 dark:text-blue-800">
                       {movie.vote_average.toFixed(1)}
                     </p>

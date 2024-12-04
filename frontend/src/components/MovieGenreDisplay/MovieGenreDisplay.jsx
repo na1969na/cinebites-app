@@ -5,8 +5,8 @@ const MovieGenreDisplay = () => {
   const { genres } = useMovieData();
 
   return (
-    <div className="p-12 font-publico">
-      <h1 className="text-5xl text-gray-800 sm:text-7xl text-center p-10">
+    <div className="p-12 font-publico dark:bg-zinc-900">
+      <h1 className="text-5xl text-gray-800 dark:text-white sm:text-7xl text-center p-10">
         Choose Your Genre
       </h1>
       <div className="grid grid-cols-3 gap-2 mt-10">

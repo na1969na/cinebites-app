@@ -33,12 +33,13 @@ const About = () => {
   return (
     <div className="font-dmsans">
       <div
-        className="bg-cover bg-top-left h-[70vh] w-full"
+        className="bg-cover bg-top-left h-[70vh] w-full relative"
         style={{
           backgroundImage: `url(${images[currentImageIndex]})`,
         }}
       >
-        <div className="p-10">
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="relative p-10">
           <h1 className="text-9xl font-publico text-white">
             WHAT <br />
             IS
@@ -47,8 +48,8 @@ const About = () => {
           </h1>
         </div>
       </div>
-      <div className="flex flex-row gap-6 w-full p-10">
-        <h2 className="text-8xl font-helvetica w-full sm:w-[40rem]">
+      <div className="flex flex-row gap-6 w-full p-10 dark:bg-zinc-900 dark:text-customBackground">
+        <h2 className="text-8xl font-helvetica w-full sm:w-[40rem] ">
           Discover Movies, <br />
           Delight in Recipes
         </h2>
