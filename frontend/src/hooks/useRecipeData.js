@@ -2,38 +2,17 @@ import axios from "axios";
 
 const RECIPES_API_KEY = import.meta.env.VITE_RECIPE_API_KEY;
 
-const genreMapping = {
-  28: "spicy",
-  12: "grilled",
-  16: "sweet, fruity",
-  35: "snacks",
-  80: "spicy, bold flavors",
-  99: "healthy, clean",
-  18: "hearty, comforting",
-  10751: "pizza, burgers",
-  14: "magical, sweet",
-  36: "traditional, ancient",
-  27: "dark, spicy, blood-red",
-  10402: "light snacks, cocktails",
-  9648: "savory, complex",
-  10749: "chocolate, fondue",
-  878: "futuristic, fusion",
-  10770: "easy snacks, comfort",
-  53: "spicy, exciting",
-  10752: "hearty, filling",
-  37: "barbecue, meat-heavy",
-};
-
+// Custom hook to fetch recipe data
 const useRecipeData = () => {
+  
   // Fetch recipes by genre ID
-  const fetchRecipesByGenre = async (genreId) => {
+  const fetchRecipesByGenre = async () => {
     try {
       const response = await axios.get(
-        "https://api.spoonacular.com/recipes/complexSearch",
+        "https://api.spoonacular.com/recipes/random",
         {
           params: {
             apiKey: RECIPES_API_KEY,
-            query: genreMapping[genreId] || genreId,
             number: 10,
           },
         }
