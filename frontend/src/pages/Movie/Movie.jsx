@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import useMovieData from "../../hooks/useMovieData";
+import useRecipeData from "../../hooks/useRecipeData";
 
 const Movie = () => {
   const location = useLocation();
@@ -10,17 +11,23 @@ const Movie = () => {
   const [isResizing, setIsResizing] = useState(false);
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const { fetchMovies } = useMovieData(genreId);
+  const { fetchRecipesByGenre } = useRecipeData(genreId);
+  const [recipes, setRecipes] = useState([]);
+  const [gridCols, setGridCols] = useState("grid-cols-1");
 
   const MAX_SIDEBAR_WIDTH = 600;
   const MIN_SIDEBAR_WIDTH = 200;
 
-  const {
-    recipes,
-    fetchMovies,
-  } = useMovieData(genreId);
-
   useEffect(() => {
     fetchMovies().then((movies) => setMovies(movies));
+  }, [genreId]);
+
+  useEffect(() => {
+    fetchRecipesByGenre(genreId).then((recipes) => {
+      setRecipes(recipes);
+      console.log(recipes);
+    });
   }, [genreId]);
 
   const handleMouseMove = useCallback(
@@ -40,6 +47,10 @@ const Movie = () => {
   }, []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (isResizing) {
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
@@ -51,6 +62,14 @@ const Movie = () => {
     };
   }, [isResizing, handleMouseMove, handleMouseUp]);
 
+  useEffect(() => {
+    if (sidebarWidth > 400) {
+      setGridCols("grid-cols-2");
+    } else {
+      setGridCols("grid-cols-1");
+    }
+  }, [sidebarWidth]);
+
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -60,7 +79,7 @@ const Movie = () => {
   );
 
   return (
-    <div className="font-publico flex bg-customElements pt-16 ">
+    <div className="font-publico flex pt-16">
       {/* Main Content */}
       <div className="flex-1 bg-customBackground dark:bg-zinc-900">
         <div className="block lg:flex justify-between px-10 py-7">
@@ -123,27 +142,34 @@ const Movie = () => {
 
       {/* Sidebar */}
       <div
-        className="bg-accentBackground flex-shrink-0 p-5"
+        className="bg-accentBackground flex-shrink-0 p-5 overflow-y-auto h-[calc(100vh-4rem)]"
         style={{ width: `${sidebarWidth}px` }}
       >
         <h2 className="text-3xl sm:text-4xl text-center text-gray-800">
           Recipes
         </h2>
-        {/* <ul className="mt-10 grid grid-cols-2 gap-0">
+        <ul className={`mt-10 grid ${gridCols} gap-0`}>
           {recipes.map((recipe) => (
             <li
               key={recipe.id}
-              className="text-white rounded-full flex flex-col items-center"
+              className="rounded-full flex flex-col items-center"
             >
-              <img
-                src={recipe.image}
-                alt={recipe.title}
-                className="w-40 h-40 rounded-full mt-2 object-cover"
-              />
-              <p className="mt-2 text-center">{recipe.title}</p>
+              <Link
+                to={{
+                  pathname: "/recipe",
+                }}
+                state={{ recipeId: recipe.id }}
+              >
+                <img
+                  src={recipe.image}
+                  alt={recipe.title}
+                  className="w-40 h-40 rounded-full mt-2 object-cover hover:opacity-60 transition duration-300"
+                />
+              </Link>
+              <p className="mt-4 text-center font-dmsans">{recipe.title}</p>
             </li>
           ))}
-        </ul> */}
+        </ul>
       </div>
     </div>
   );

@@ -12,3 +12,12 @@
     font-style: normal;
   }
 }
+
+@layer base {
+  @font-face {
+    font-family: "VastagoGrotesk";
+    src: url("/src/assets/fonts/VastagoGrotesk.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+  }
+}

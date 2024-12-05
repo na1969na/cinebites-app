@@ -12,7 +12,8 @@ export default {
       fontFamily: {
         publico: ["PublicoBanner", "serif"],
         dmsans: ["DM Sans", "serif"],
-        helvetica: ["Helvetica", "sans-serif"],
+        helvetica: ["Helvetica", "serif"],
+        vastago: ["VastagoGrotesk", "serif"],
       },
       backgroundImage: {
         headerImage: "url('frontend/src/assets/header_img.jpg')",

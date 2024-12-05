@@ -34,7 +34,7 @@ const Navbar = () => {
   };
 
   const getBackgroundColor = () => {
-    const isMoviesPage = location.pathname === "/movies";
+    const isMoviesPage = location.pathname === "/movies" || location.pathname === "/recipe";
     if (isMoviesPage) {
       return isDarkMode ? "bg-zinc-900" : "bg-customBackground";
     }
@@ -42,7 +42,7 @@ const Navbar = () => {
   };
 
   const getTextColor = () => {
-    const isMoviesPage = location.pathname === "/movies";
+    const isMoviesPage = location.pathname === "/movies" || location.pathname === "/recipe";
     if (isMoviesPage) {
       return isDarkMode ? "text-customBackground" : "text-gray-800";
     }
