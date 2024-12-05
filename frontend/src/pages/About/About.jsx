@@ -38,7 +38,7 @@ const About = () => {
           backgroundImage: `url(${images[currentImageIndex]})`,
         }}
       >
-        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative p-10 flex flex-col justify-center h-full">
           <h1 className="text-7xl sm:text-9xl font-publico text-white w-auto sm:static sm:top-auto sm:bottom-auto sm:transform-none absolute bottom-10 left-1/2 transform -translate-x-1/2 sm:translate-x-0">
             

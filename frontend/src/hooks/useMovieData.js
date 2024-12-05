@@ -35,20 +35,19 @@ const useMovieData = (id) => {
   };
 
   // Fetch genres
-  const fetchGenres = async () => {
-    try {
-      const response = await apiClient.get("/genre/movie/list", {
-        params: {
-          language: "en-US",
-        },
-      });
-      setGenres(response.data.genres);
-    } catch (error) {
-      console.error("Error fetching genres:", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const response = await apiClient.get("/genre/movie/list", {
+          params: {
+            language: "en-US",
+          },
+        });
+        setGenres(response.data.genres);
+      } catch (error) {
+        console.error("Error fetching genres:", error);
+      }
+    };
     fetchGenres();
   }, [id]);
 
@@ -73,7 +72,6 @@ const useMovieData = (id) => {
       for (const { movieId, index } of imageMap) {
         const response = await apiClient.get(`/movie/${movieId}/images`);
         const backdrops = response.data.backdrops;
-        console.log(backdrops);
         const selectedImage = backdrops[index];
         if (selectedImage) {
           images.push(
