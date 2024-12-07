@@ -4,7 +4,7 @@ const RECIPES_API_KEY = import.meta.env.VITE_RECIPE_API_KEY;
 
 // Custom hook to fetch recipe data
 const useRecipeData = () => {
-  
+
   // Fetch recipes by genre ID
   const fetchRecipesByGenre = async () => {
     try {
@@ -17,7 +17,7 @@ const useRecipeData = () => {
           },
         }
       );
-      return response.data.results;
+      return response.data.recipes;
     } catch (error) {
       console.error("Error fetching recipes:", error);
       return [];

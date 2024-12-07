@@ -24,11 +24,11 @@ const Movie = () => {
   }, [genreId]);
 
   useEffect(() => {
-    fetchRecipesByGenre(genreId).then((recipes) => {
+    fetchRecipesByGenre().then((recipes) => {
       setRecipes(recipes);
       console.log(recipes);
     });
-  }, [genreId]);
+  }, []);
 
   const handleMouseMove = useCallback(
     (e) => {

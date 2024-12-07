@@ -28,11 +28,13 @@ const Recipe = () => {
     <div className="font-dmsans pt-10 lg:pt-16 bg-customBackground dark:bg-zinc-900 w-full text-gray-800 dark:text-customBackground">
       {recipe && (
         <div className="flex flex-col lg:flex-row border-y-2 border-accentBackground">
-          <img
-            src={recipe.image}
-            alt={recipe.title}
-            className="w-full lg:w-1/2 p-10"
-          />
+          <div className="w-full lg:w-1/2 p-10">
+            <img
+              src={recipe.image}
+              alt={recipe.title}
+              className=""
+            />
+          </div>
           <div className="flex flex-col gap-10 w-full lg:w-1/2 border-t-2 lg:border-t-0 lg:border-l-2 border-accentBackground p-10">
             <h1 className=" text-5xl md:text-7xl font-semibold">
               {recipe.title}
