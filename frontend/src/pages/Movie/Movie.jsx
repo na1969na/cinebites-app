@@ -15,6 +15,7 @@ const Movie = () => {
   const { fetchRecipesByGenre } = useRecipeData(genreId);
   const [recipes, setRecipes] = useState([]);
   const [gridCols, setGridCols] = useState("grid-cols-1");
+  const [isOpen, setIsOpen] = useState(false);
 
   const MAX_SIDEBAR_WIDTH = 600;
   const MIN_SIDEBAR_WIDTH = 200;
@@ -79,7 +80,32 @@ const Movie = () => {
   );
 
   return (
-    <div className="font-publico flex pt-16">
+    <div className="font-publico flex flex-col md:flex-row pt-10 md:pt-16">
+      <div className="bg-accentBackground py-5 block md:hidden">
+        <div className="flex overflow-x-auto gap-10">
+          {recipes.map((recipe) => (
+            <div
+              key={recipe.id}
+              className="flex-shrink-0 w-40 h-40 rounded-full"
+            >
+              <Link
+                to={{
+                  pathname: "/recipe",
+                }}
+                state={{ recipeId: recipe.id }}
+              >
+                <div>
+                  <img
+                    src={recipe.image}
+                    alt={recipe.title}
+                    className="rounded-full w-40 h-40 object-cover hover:opacity-60 transition duration-300"
+                  />
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
       {/* Main Content */}
       <div className="flex-1 bg-customBackground dark:bg-zinc-900">
         <div className="block lg:flex justify-between px-10 py-7">
@@ -99,7 +125,7 @@ const Movie = () => {
             </button>
           </div>
         </div>
-        <div className="pt-0 lg:pt-10 px-5 lg:px-10 divide-y divide-black dark:divide-customBackground bg-gray-200 dark:bg-zinc-800 overflow-y-auto h-[calc(100vh-200px)]">
+        <div className="pt-0 lg:pt-10 px-5 lg:px-10 divide-y divide-black dark:divide-customBackground bg-gray-200 dark:bg-zinc-800 overflow-y-auto h-[calc(100vh-12.625rem)] lg:h-[calc(100vh-10.125rem)]">
           {filteredMovies.map(
             (movie) =>
               movie.backdrop_path && (
@@ -142,13 +168,13 @@ const Movie = () => {
 
       {/* Sidebar */}
       <div
-        className="bg-accentBackground flex-shrink-0 p-5 overflow-y-auto h-[calc(100vh-4rem)]"
+        className="bg-accentBackground flex-shrink-0 p-5 overflow-y-auto hidden md:block h-[calc(100vh-4rem)]"
         style={{ width: `${sidebarWidth}px` }}
       >
-        <h2 className="text-3xl sm:text-4xl text-center text-gray-800">
+        <h2 className="text-3xl sm:text-4xl text-center text-gray-800 hidden md:block">
           Recipes
         </h2>
-        <ul className={`mt-10 grid ${gridCols} gap-0`}>
+        <ul className={`mt-5 grid ${gridCols} gap-0`}>
           {recipes.map((recipe) => (
             <li
               key={recipe.id}
