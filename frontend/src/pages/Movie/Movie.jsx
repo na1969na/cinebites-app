@@ -24,11 +24,19 @@ const Movie = () => {
     fetchMovies().then((movies) => setMovies(movies));
   }, [genreId]);
 
+  // useEffect(() => {
+  //   fetchRecipesByGenre().then((recipes) => {
+  //     setRecipes(recipes);
+  //     console.log(recipes);
+  //   });
+  // }, []);
+
   useEffect(() => {
-    fetchRecipesByGenre().then((recipes) => {
-      setRecipes(recipes);
-      console.log(recipes);
-    });
+    fetch('/data.json')
+      .then((response) => response.json())
+      .then((data) => {
+        setRecipes(data);
+      });
   }, []);
 
   const handleMouseMove = useCallback(
