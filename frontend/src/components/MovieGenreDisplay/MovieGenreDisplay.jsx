@@ -49,19 +49,19 @@ const MovieGenreDisplay = () => {
   };
 
   return (
-    <div className="p-12 font-publico bg-zinc-900">
-      <h1 className="text-3xl text-white sm:text-5xl md:text-7xl text-center p-0 sm:p-5 md:p-10">
+    <div className="p-12 font-dmsans bg-zinc-950">
+      <h1 className="text-xl text-white sm:text-5xl md:text-3xl text-left pb-5">
         Choose Your Genre
       </h1>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-10 place-items-center max-w-screen-lg mx-auto">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center">
         {genres.map((genre) => (
           <Link
             key={genre.id}
-            className={`p-6 text-customBackground rounded-full shadow-md hover:bg-opacity-75 transition duration-300 cursor-pointer ease-in-out flex items-center justify-center h-60 w-60 ${getBackgroundColor(genre.id)}`}
+            className={`p-10 text-customBackground rounded-sm shadow-md hover:bg-opacity-75 transition duration-300 cursor-pointer ease-in-out flex items-center justify-center w-full ${getBackgroundColor(genre.id)}`}
             to={{
               pathname: "/movies",
             }}
-            state={{ genreId: genre.id, genreName: genre.name }}
+            state={{ genreId: genre.id, genreName: genre.name, genreColor: getBackgroundColor(genre.id) }}
           >
             <p className="text-left mb-2 text-3xl">{genre.name}</p>
           </Link>

@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindScrollbarHide from "tailwind-scrollbar-hide";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: 'selector',
@@ -8,12 +10,14 @@ export default {
         customBackground: "#F8F4EC",
         accentBackground: "#DD482A",
         customElements: "#FDFDFD",
+        accentColor: "#0AE448",
       },
       fontFamily: {
         publico: ["PublicoBanner", "serif"],
         dmsans: ["DM Sans", "serif"],
         helvetica: ["Helvetica", "serif"],
         vastago: ["VastagoGrotesk", "serif"],
+        mori: ["Mori", "serif"],
       },
       backgroundImage: {
         headerImage: "url('frontend/src/assets/header_img.jpg')",
@@ -29,5 +33,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [tailwindScrollbarHide],
 };

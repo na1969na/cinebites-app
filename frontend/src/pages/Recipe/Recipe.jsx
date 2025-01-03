@@ -35,7 +35,7 @@ const Recipe = () => {
   }, []);
 
   return (
-    <div className="font-dmsans pt-10 lg:pt-16 bg-customBackground dark:bg-zinc-900 w-full text-gray-800 dark:text-customBackground">
+    <div className="font-dmsans pt-10 lg:pt-16 bg-customBackground dark:bg-zinc-950 w-full text-gray-800 dark:text-customBackground">
       {recipe && (
         <div className="p-10 md:px-40 md:py-20 flex flex-col gap-10">
           <h1 className="text-5xl md:text-6xl font-semibold">{recipe.title}</h1>
@@ -56,8 +56,8 @@ const Recipe = () => {
             <div className="w-full md:w-1/2">
               <h2 className="text-3xl font-semibold mb-5">Ingredients</h2>
               <ul className="list-disc list-inside">
-                {recipe.ingredients?.map((ingredient) => (
-                  <li key={ingredient.id} className="text-xl">{ingredient}</li>
+                {recipe.ingredients?.map((ingredient, index) => (
+                  <li key={index} className="text-xl">{ingredient}</li>
                 ))}
               </ul>
             </div>

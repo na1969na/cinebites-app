@@ -49,7 +49,7 @@ const About = () => {
           </h1>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row gap-6 w-full p-10 dark:bg-zinc-900 dark:text-customBackground">
+      <div className="flex flex-col md:flex-row gap-6 w-full p-10 dark:bg-zinc-950 dark:text-customBackground">
         <h2 className="text-3xl sm:text-6xl md:text-8xl font-helvetica w-full md:w-[40rem] ">
           Discover Movies, <br />
           Delight in Recipes

@@ -21,3 +21,14 @@
     font-style: normal;
   }
 }
+
+@layer base {
+  @font-face {
+    font-family: "Mori";
+    src: url("/src/assets/fonts/Mori.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+
