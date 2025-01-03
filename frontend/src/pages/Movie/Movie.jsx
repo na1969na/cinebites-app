@@ -84,20 +84,17 @@ const Movie = () => {
   );
 
   return (
-    <div className="font-mori p-10 md:p-16">
+    <div className="font-mori pt-16">
       {/* Movie Section */}
-      <div className="flex-1">
+      <div className="px-20">
         <h1 className="text-4xl sm:text-6xl font-semibold py-8">
-          Movies in{" "}
-          <span className={`${genreColor} text-zinc-950 p-3 rounded-md`}>
-            {genreName}
-          </span>
+          <span className={`text-${genreColor}`}>{genreName}</span>
         </h1>
         <h2 className="py-3 text-3xl font-semibold">My List</h2>
         <h2 className="py-3 text-3xl font-semibold">
           Top 20 {genreName} Movies Today
         </h2>
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden pb-10">
           <div className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth">
             {filteredMovies.map(
               (movie) =>
@@ -119,19 +116,23 @@ const Movie = () => {
           </div>
         </div>
 
-        <div className="text-center">
-          <Link to="/" className="text-accentColor">
+        <div className="flex items-center space-x-4">
+          <Link
+            to="/"
+            className="border-2 px-6 py-3 rounded-full text-2xl flex items-center justify-center hover:bg-accentColor2 hover:text-zinc-950 transition duration-300"
+          >
             Explore More
+            <ArrowRightIcon className="h-10 w-10 ml-2" />
           </Link>
         </div>
       </div>
 
       {/* Recipe Section */}
-      <div>
+      <div className="mt-20">
         <h1 className="py-8 text-4xl sm:text-6xl font-semibold">Recipes</h1>
         <h2 className="text-3xl font-semibold py-3">My List</h2>
         <h2 className="text-3xl font-semibold py-3">Popular Recipes</h2>
-        <div className="overflow-x-scroll scrollbar-hide">
+        <div className="overflow-x-scroll scrollbar-hide pb-10">
           <div className="flex gap-3">
             {recipes.map((recipe) => (
               <div
@@ -154,7 +155,15 @@ const Movie = () => {
             ))}
           </div>
         </div>
-        <Link to="/">Explore More</Link>
+        <div className="flex items-center space-x-4">
+          <Link
+            to="/"
+            className="border-2 px-6 py-3 rounded-full text-2xl flex items-center justify-center hover:bg-accentColor2 hover:text-zinc-950 transition duration-300"
+          >
+            Explore More
+            <ArrowRightIcon className="h-10 w-10 ml-2" />
+          </Link>
+        </div>
       </div>
     </div>
   );
