@@ -84,30 +84,27 @@ const Movie = () => {
   );
 
   return (
-    <div className="font-mori p-10 md:p-16 bg-zinc-950 text-customBackground">
+    <div className="font-mori p-10 md:p-16">
       {/* Movie Section */}
       <div className="flex-1">
-        <div className="py-10 text-left">
-          <h1 className="py-5 text-4xl sm:text-6xl font-semibold">
-            Movies in{" "}
-            <span className={`${genreColor} text-zinc-950 p-3 rounded-md`}>
-              {genreName}
-            </span>
-          </h1>
-        </div>
-        <div>
-          <h2 className="text-3xl font-semibold">
-            Top 20 {genreName} Movies Today
-          </h2>
-        </div>
-        <div className="relative overflow-hidden bg-zinc-950">
+        <h1 className="text-4xl sm:text-6xl font-semibold py-8">
+          Movies in{" "}
+          <span className={`${genreColor} text-zinc-950 p-3 rounded-md`}>
+            {genreName}
+          </span>
+        </h1>
+        <h2 className="py-3 text-3xl font-semibold">My List</h2>
+        <h2 className="py-3 text-3xl font-semibold">
+          Top 20 {genreName} Movies Today
+        </h2>
+        <div className="relative overflow-hidden">
           <div className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth">
             {filteredMovies.map(
               (movie) =>
                 movie.backdrop_path && (
                   <div
                     key={movie.id}
-                    className="min-w-[200px] lg:min-w-[250px] py-5 lg:py-10 transition-transform duration-300 ease-in-out group"
+                    className="min-w-[200px] lg:min-w-[250px] transition-transform duration-300 ease-in-out group"
                   >
                     <div className="w-full">
                       <img
@@ -131,14 +128,11 @@ const Movie = () => {
 
       {/* Recipe Section */}
       <div>
-        <div className="py-10 text-left">
-          <h1 className="py-5 text-4xl sm:text-6xl font-semibold">Recipes</h1>
-        </div>
-        <div>
-          <h2 className="text-3xl font-semibold">Popular Recipes</h2>
-        </div>
-        <div className="overflow-x-scroll scrollbar-hide bg-zinc-950 p-4">
-          <div className="flex gap-5">
+        <h1 className="py-8 text-4xl sm:text-6xl font-semibold">Recipes</h1>
+        <h2 className="text-3xl font-semibold py-3">My List</h2>
+        <h2 className="text-3xl font-semibold py-3">Popular Recipes</h2>
+        <div className="overflow-x-scroll scrollbar-hide">
+          <div className="flex gap-3">
             {recipes.map((recipe) => (
               <div
                 key={recipe.id}
@@ -153,7 +147,7 @@ const Movie = () => {
                   <img
                     src={recipe.image}
                     alt={recipe.title}
-                    className="mt-2 object-cover hover:opacity-60 transition duration-300 rounded"
+                    className="mt-2 object-cover hover:opacity-60 transition duration-300 rounded-lg w-64 h-64"
                   />
                 </Link>
               </div>

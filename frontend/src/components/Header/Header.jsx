@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div className="overflow-hidden text-center flex items-center justify-center text-zinc-950 p-20 font-dmsans bg-customBackground w-full">
+    <div className="overflow-hidden text-center flex items-center justify-center font-dmsans w-full">
       <div className="p-20 text-center">
         <h2 className="text-5xl md:text-7xl font-semibold">
           Pair Your Movie with a Perfect Dish!

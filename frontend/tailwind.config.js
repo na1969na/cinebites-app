@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        customBackground: "#F8F4EC",
         accentBackground: "#DD482A",
         customElements: "#FDFDFD",
         accentColor: "#0AE448",
+        accentColor2: "#FFFCE1",
       },
       fontFamily: {
         publico: ["PublicoBanner", "serif"],
