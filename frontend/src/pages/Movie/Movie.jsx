@@ -119,50 +119,52 @@ const Movie = () => {
         <div className="flex items-center space-x-4">
           <Link
             to="/"
-            className="border-2 px-6 py-3 rounded-full text-2xl flex items-center justify-center hover:bg-accentColor2 hover:text-zinc-950 transition duration-300"
+            className="border-2 px-4 py-2 rounded-full text-lg flex items-center justify-center hover:bg-accentColor2 hover:text-zinc-950 transition duration-300"
           >
             Explore More
-            <ArrowRightIcon className="h-10 w-10 ml-2" />
+            <ArrowRightIcon className="h-6 w-6 ml-2" />
           </Link>
         </div>
       </div>
 
       {/* Recipe Section */}
-      <div className="mt-20">
-        <h1 className="py-8 text-4xl sm:text-6xl font-semibold">Recipes</h1>
-        <h2 className="text-3xl font-semibold py-3">My List</h2>
-        <h2 className="text-3xl font-semibold py-3">Popular Recipes</h2>
-        <div className="overflow-x-scroll scrollbar-hide pb-10">
-          <div className="flex gap-3">
-            {recipes.map((recipe) => (
-              <div
-                key={recipe.id}
-                className="flex-shrink-0 w-64 flex flex-col items-center"
-              >
-                <Link
-                  to={{
-                    pathname: "/recipe",
-                  }}
-                  state={{ recipeId: recipe.id }}
+      <div className={`mt-20 ${genreColor} text-zinc-950`}>
+        <div className="px-20 pb-20">
+          <h1 className="py-8 text-4xl sm:text-6xl font-semibold">Recipes</h1>
+          <h2 className="text-3xl font-semibold py-3">My List</h2>
+          <h2 className="text-3xl font-semibold py-3">Popular Recipes</h2>
+          <div className="overflow-x-scroll scrollbar-hide pb-10">
+            <div className="flex gap-3">
+              {recipes.map((recipe) => (
+                <div
+                  key={recipe.id}
+                  className="flex-shrink-0 w-64 flex flex-col items-center"
                 >
-                  <img
-                    src={recipe.image}
-                    alt={recipe.title}
-                    className="mt-2 object-cover hover:opacity-60 transition duration-300 rounded-lg w-64 h-64"
-                  />
-                </Link>
-              </div>
-            ))}
+                  <Link
+                    to={{
+                      pathname: "/recipe",
+                    }}
+                    state={{ recipeId: recipe.id }}
+                  >
+                    <img
+                      src={recipe.image}
+                      alt={recipe.title}
+                      className="mt-2 object-cover hover:opacity-60 transition duration-300 rounded-lg w-64 h-64"
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="flex items-center space-x-4">
-          <Link
-            to="/"
-            className="border-2 px-6 py-3 rounded-full text-2xl flex items-center justify-center hover:bg-accentColor2 hover:text-zinc-950 transition duration-300"
-          >
-            Explore More
-            <ArrowRightIcon className="h-10 w-10 ml-2" />
-          </Link>
+          <div className="flex items-center space-x-4">
+            <Link
+              to="/"
+              className="border-2 border-zinc-950 px-4 py-2 rounded-full text-lg flex items-center justify-center hover:bg-zinc-950 hover:text-accentColor2 transition duration-300"
+            >
+              Explore More
+              <ArrowRightIcon className="h-6 w-6 ml-2" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
