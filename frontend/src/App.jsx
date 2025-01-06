@@ -1,9 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
-import Movie from "./pages/Movie/Movie";
 import Recipe from "./pages/Recipe/Recipe";
 import Layout from "./components/Layout/Layout";
+import MovieRecipe from "./pages/MovieRecipe/MovieRecipe";
+import Movies from "./pages/Movies/Movies";
+import Recipes from "./pages/Recipes/Recipes";
 
 const App = () => {
   return (
@@ -12,8 +14,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/movies" element={<Movie />} />
+          <Route path="/movie-recipe" element={<MovieRecipe />} />
           <Route path="/recipe" element={<Recipe />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/recipes" element={<Recipes />} />
         </Routes>
       </Layout>
     </div>

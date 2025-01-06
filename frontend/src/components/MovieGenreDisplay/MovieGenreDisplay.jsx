@@ -59,7 +59,7 @@ const MovieGenreDisplay = () => {
             key={genre.id}
             className={`p-10 text-customBackground rounded-sm shadow-md hover:bg-opacity-75 transition duration-300 cursor-pointer ease-in-out flex items-center justify-center w-full ${getBackgroundColor(genre.id)}`}
             to={{
-              pathname: "/movies",
+              pathname: "/movie-recipe",
             }}
             state={{ genreId: genre.id, genreName: genre.name, genreColor: getBackgroundColor(genre.id) }}
           >

@@ -4,7 +4,7 @@ import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import useMovieData from "../../hooks/useMovieData";
 import useRecipeData from "../../hooks/useRecipeData";
 
-const Movie = () => {
+const MovieRecipe = () => {
   const location = useLocation();
   const { genreId, genreName, genreColor } = location.state || {};
   const [sidebarWidth, setSidebarWidth] = useState(250);
@@ -118,7 +118,7 @@ const Movie = () => {
 
         <div className="flex items-center space-x-4">
           <Link
-            to="/"
+            to="/movies"
             className="border-2 px-4 py-2 rounded-full text-lg flex items-center justify-center hover:bg-accentColor2 hover:text-zinc-950 transition duration-300"
           >
             Explore More
@@ -158,7 +158,7 @@ const Movie = () => {
           </div>
           <div className="flex items-center space-x-4">
             <Link
-              to="/"
+              to="/recipes"
               className="border-2 border-zinc-950 px-4 py-2 rounded-full text-lg flex items-center justify-center hover:bg-zinc-950 hover:text-accentColor2 transition duration-300"
             >
               Explore More
@@ -171,4 +171,4 @@ const Movie = () => {
   );
 };
 
-export default Movie;
+export default MovieRecipe;
