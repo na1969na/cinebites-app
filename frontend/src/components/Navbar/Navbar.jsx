@@ -28,10 +28,10 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/user"
+                to="/my-list"
                 className="text-lg transform transition-transform duration-300 hover:rotate-6"
               >
-                User
+                My List
               </Link>
             </li>
             <li>

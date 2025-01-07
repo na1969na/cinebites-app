@@ -6,6 +6,7 @@ import Layout from "./components/Layout/Layout";
 import MovieRecipe from "./pages/MovieRecipe/MovieRecipe";
 import Movies from "./pages/Movies/Movies";
 import Recipes from "./pages/Recipes/Recipes";
+import MyList from "./pages/MyList/MyList";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/recipe" element={<Recipe />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/recipes" element={<Recipes />} />
+          <Route path="/my-list" element={<MyList />} />
         </Routes>
       </Layout>
     </div>
