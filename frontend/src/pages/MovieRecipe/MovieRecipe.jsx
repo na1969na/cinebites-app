@@ -118,7 +118,10 @@ const MovieRecipe = () => {
 
         <div className="flex items-center space-x-4">
           <Link
-            to="/movies"
+            to={{
+              pathname: "/movies",
+            }}
+            state={{ genreId: genreId, genreName: genreName, genreColor: genreColor }}
             className="border-2 px-4 py-2 rounded-full text-lg flex items-center justify-center hover:bg-accentColor2 hover:text-zinc-950 transition duration-300"
           >
             Explore More
