@@ -9,8 +9,10 @@ export default {
       colors: {
         accentBackground: "#DD482A",
         customElements: "#FDFDFD",
-        accentColor: "#0AE448",
+        // accentColor: "#0AE448",
         accentColor2: "#FFFCE1",
+        primaryColor: "#add8e6",
+        secondaryColor: "#005b4e",
       },
       fontFamily: {
         publico: ["PublicoBanner", "serif"],

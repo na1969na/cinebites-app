@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 
 const Layout = ({ children }) => {
   return (
-    <div className="bg-zinc-950 text-accentColor2 min-h-screen">
+    <div className="bg-primaryColor text-secondaryColor min-h-screen">
       <Navbar />
       <main>{children}</main>
       <Footer />
