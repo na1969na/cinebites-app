@@ -1,6 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
-import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 const Movies = () => {

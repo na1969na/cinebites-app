@@ -131,7 +131,7 @@ const MovieRecipe = () => {
           <div className="flex items-center space-x-4">
             <Link
               to={{
-                pathname: "/movies",
+                pathname: "/recipes",
               }}
               state={{
                 genreId: genreId,

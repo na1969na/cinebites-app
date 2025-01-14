@@ -8,16 +8,6 @@ const Recipe = () => {
   const location = useLocation();
   const { recipeId } = location.state || {};
 
-  const formatInstructions = (html) => {
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const textContent = doc.body.textContent || "";
-    return textContent.split(".").map((item, index) => (
-      <p key={index}>
-        {item.trim()}
-      </p>
-    ));
-  };
-
   // useEffect(() => {
   //   fetchRecipeDetails(recipeId).then((recipe) => {
   //     setRecipe(recipe);
@@ -26,53 +16,72 @@ const Recipe = () => {
   // }, [recipeId]);
 
   useEffect(() => {
-    fetch('/data.json')
+    fetch("/data.json")
       .then((response) => response.json())
       .then((data) => {
-        const result = data.find(snack => snack.id === parseInt(recipeId));
+        const result = data.find((snack) => snack.id === parseInt(recipeId));
         setRecipe(result);
       });
   }, []);
 
   return (
-    <div className="font-dmsans pt-10 lg:pt-16 bg-customBackground dark:bg-zinc-950 w-full text-gray-800 dark:text-customBackground">
-      {recipe && (
-        <div className="p-10 md:px-40 md:py-20 flex flex-col gap-10">
-          <h1 className="text-5xl md:text-6xl font-semibold">{recipe.title}</h1>
-          <div className="flex justify-center">
-            <img src={recipe.image} alt={recipe.title} />
+    <div className="font-mori pt-10 lg:pt-16 w-full bg-tertiaryColor text-black">
+      <div className="px-20 py-10">
+        {recipe && (
+          <div>
+            <div className="flex mb-10 h-screen border-b border-black">
+              <div className="flex-1 text-center m-auto">
+                <h1 className="text-5xl md:text-5xl">
+                  {recipe.title}
+                </h1>
+                <p className="px-10">{recipe.comment}</p>
+              </div>
+              <div className="flex-1 justify-center mb-10">
+                <img
+                  src={recipe.image}
+                  alt={recipe.title}
+                  className="h-full object-cover rounded-sm"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col items-center justify-center gap-10">
+              <div className="flex gap-10">
+                <div>
+                  <p className="text-sm">PREP TIME</p>
+                  <p className="text-lg">{recipe.prepTime} MIN</p>
+                </div>
+                <div>
+                  <p className="text-sm ">SERVINGS</p>
+                  <p className="text-lg">{recipe.servings} PEOPLE</p>
+                </div>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-10">
+                  <h2 className="text-xl mb-5">Ingredients:</h2>
+                  <ul className="list-disc list-inside space-y-3">
+                    {recipe.ingredients?.map((ingredient, index) => (
+                      <li key={index} className="text-xl">
+                        {ingredient}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mt-10">
+                  <h2 className="text-xl mb-5">Steps:</h2>
+                  <p className="text-xl">
+                    {recipe.recipe.split("\n").map((step, index) => (
+                      <span key={index} className="block mb-4">
+                        {step}
+                        <br />
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="flex gap-10">
-            <div>
-              <p className="text-sm text-gray-400">PREP TIME</p>
-              <p className="text-lg">{recipe.prepTime} MIN</p>
-            </div>
-            <div>
-              <p className="text-sm text-gray-400">SERVINGS</p>
-              <p className="text-lg">{recipe.servings} PEOPLE</p>
-            </div>
-          </div>
-          <div className="flex flex-col md:flex-row justify-between gap-10">
-            <div className="w-full md:w-1/2">
-              <h2 className="text-3xl font-semibold mb-5">Ingredients</h2>
-              <ul className="list-disc list-inside">
-                {recipe.ingredients?.map((ingredient, index) => (
-                  <li key={index} className="text-xl">{ingredient}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="w-full md:w-1/2">
-              <h2 className="text-3xl font-semibold mb-5">Instructions</h2>
-              <p className="text-xl">{recipe.recipe.split("\n").map((step, index) => (
-              <span key={index}>
-                {step}
-                <br />
-              </span>
-            ))}</p>
-            </div>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
