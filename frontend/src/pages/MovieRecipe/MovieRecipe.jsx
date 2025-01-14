@@ -36,7 +36,7 @@ const MovieRecipe = () => {
     <div className="font-mori pt-16 px-20">
       {/* Movie Section */}
       <div className="border-b border-secondaryColor py-8">
-        <h1 className="text-4xl sm:text-5xl border-b border-secondaryColor">
+        <h1 className="text-4xl sm:text-5xl border-b border-secondaryColor pb-8">
           {genreName}
         </h1>
         <Link
@@ -44,13 +44,12 @@ const MovieRecipe = () => {
           to={{
             pathname: "/my-list",
           }}
+          state={{ selectedTab: "Movies" }}
         >
           <h2 className="text-3xl">My List</h2>
           <ChevronRightIcon class="h-6 w-6" />
         </Link>
-        <h2 className="py-3 text-3xl">
-          Top 20 {genreName} Movies Today
-        </h2>
+        <h2 className="py-3 text-3xl">Top 20 {genreName} Movies Today</h2>
         <div className="relative overflow-hidden pb-10">
           <div className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth">
             {movies.map(
@@ -100,6 +99,7 @@ const MovieRecipe = () => {
             to={{
               pathname: "/my-list",
             }}
+            state={{ selectedTab: "Recipes" }}
           >
             <h2 className="text-3xl">My List</h2>
             <ChevronRightIcon class="h-6 w-6" />
@@ -129,20 +129,20 @@ const MovieRecipe = () => {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-          <Link
-            to={{
-              pathname: "/movies",
-            }}
-            state={{
-              genreId: genreId,
-              genreName: genreName,
-              genreColor: genreColor,
-            }}
-            className="border-2 border-secondaryColor px-4 py-2 rounded-full text-lg flex items-center justify-center hover:bg-secondaryColor hover:text-primaryColor transition duration-300"
-          >
-            Explore More
-            <ArrowRightIcon className="h-6 w-6 ml-2" />
-          </Link>
+            <Link
+              to={{
+                pathname: "/movies",
+              }}
+              state={{
+                genreId: genreId,
+                genreName: genreName,
+                genreColor: genreColor,
+              }}
+              className="border-2 border-secondaryColor px-4 py-2 rounded-full text-lg flex items-center justify-center hover:bg-secondaryColor hover:text-primaryColor transition duration-300"
+            >
+              Explore More
+              <ArrowRightIcon className="h-6 w-6 ml-2" />
+            </Link>
           </div>
         </div>
       </div>

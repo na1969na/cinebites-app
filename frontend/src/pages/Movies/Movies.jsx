@@ -8,6 +8,11 @@ const Movies = () => {
   const { genreId, genreName, genreColor } = location.state || {};
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isInputVisible, setIsInputVisible] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsInputVisible(!isInputVisible);
+  };
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -20,21 +25,22 @@ const Movies = () => {
           <h1 className="text-4xl sm:text-6xl font-semibold">
             <span className={`text-${genreColor}`}>{genreName}</span>
           </h1>
-          <button className="cursor-pointer hover:opacity-70">
-            <MagnifyingGlassIcon className="h-10 w-10" />
-          </button>
-          <div className="flex justify-center font-dmsans border-b gap-4 w-full sm:w-auto">
-            <MagnifyingGlassIcon className="h-6 w-6" />
-            <input
-              type="text"
-              placeholder="Search movies..."
-              value={searchTerm}
-              onChange={handleSearchChange}
-              className="p-2 border-none outline-none bg-transparent w-full lg:w-auto"
-            />
-            <button>
-              <ArrowRightIcon className="h-6 w-6" />
+          <div className="flex justify-center font-dmsans gap-4 w-full sm:w-auto">
+            <button
+              className="cursor-pointer hover:opacity-70"
+              onClick={handleButtonClick}
+            >
+              <MagnifyingGlassIcon className="h-10 w-10" />
             </button>
+            {isInputVisible && (
+              <input
+                type="text"
+                placeholder="Search movies..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+                className="px-2 border-b border-secondaryColor outline-none bg-transparent w-full lg:w-auto text-3xl"
+              />
+            )}
           </div>
         </div>
         <div className="relative overflow-hidden pb-10">
