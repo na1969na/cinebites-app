@@ -1,28 +1,20 @@
-import { useState, useEffect, useCallback } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { useState, useEffect, useCallback } from "react";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import useMovieData from "../../hooks/useMovieData";
-import useRecipeData from "../../hooks/useRecipeData";
 
 const MovieRecipe = () => {
   const location = useLocation();
-  const { genreId, genreName, genreColor } = location.state || {};
+  const { genreId, genreName } = location.state || {};
   const [movies, setMovies] = useState([]);
-  const { fetchMovies } = useMovieData(genreId);
-  const { fetchRecipesByGenre } = useRecipeData(genreId);
+  const { fetchPopularMoviesByGenre } = useMovieData();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isInputVisible, setIsInputVisible] = useState(false);
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    fetchMovies().then((movies) => setMovies(movies));
+    fetchPopularMoviesByGenre(genreId).then((movies) => setMovies(movies));
   }, [genreId]);
-
-  // useEffect(() => {
-  //   fetchRecipesByGenre().then((recipes) => {
-  //     setRecipes(recipes);
-  //     console.log(recipes);
-  //   });
-  // }, []);
 
   useEffect(() => {
     fetch("/data.json")
@@ -32,32 +24,75 @@ const MovieRecipe = () => {
       });
   }, []);
 
+  const handleButtonClick = () => {
+    setIsInputVisible(!isInputVisible);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
-    <div className="font-mori pt-16 px-20">
-      {/* Movie Section */}
-      <div className="border-b border-secondaryColor py-8">
-        <h1 className="text-4xl sm:text-5xl border-b border-secondaryColor pb-8">
-          {genreName}
-        </h1>
-        <Link
-          className="flex text-center items-center py-10 cursor-pointer gap-5"
-          to={{
-            pathname: "/my-list",
-          }}
-          state={{ selectedTab: "Movies" }}
-        >
-          <h2 className="text-3xl">My List</h2>
-          <ChevronRightIcon className="h-6 w-6" />
-        </Link>
-        <h2 className="py-3 text-3xl">Top 20 {genreName} Movies Today</h2>
+    <div className="font-mori pt-16">
+      <div className="px-20">
+        <div className="py-10 text-center flex items-center justify-center border-b border-quaternaryColor">
+          <h1 className="text-8xl font-semibold">{genreName}</h1>
+        </div>
+
+        {/* Recipe Section */}
+        <div className="py-10">
+          <h2 className="text-2xl py-3 font-bold">Recommended Recipes</h2>
+          <div className="overflow-x-scroll scrollbar-hide pb-10">
+            <div className="flex gap-3">
+              {recipes.map((recipe) => (
+                <div
+                  key={recipe.id}
+                  className="flex-shrink-0 w-50 flex flex-col items-center"
+                >
+                  <Link
+                    to={{
+                      pathname: "/recipe",
+                    }}
+                    state={{ recipeId: recipe.id }}
+                  >
+                    <img
+                      src={recipe.image}
+                      alt={recipe.title}
+                      className="mt-2 object-cover hover:opacity-60 transition duration-300 rounded-3xl w-64 h-64"
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-4 w-full sm:w-auto">
+          <button
+            className="cursor-pointer hover:opacity-70"
+            onClick={handleButtonClick}
+          >
+            <MagnifyingGlassIcon className="h-10 w-10" />
+          </button>
+          {isInputVisible && (
+            <input
+              type="text"
+              placeholder="Search movies..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="px-2 border-b border-secondaryColor outline-none bg-transparent w-full lg:w-auto text-2xl"
+            />
+          )}
+        </div>
+
         <div className="relative overflow-hidden pb-10">
-          <div className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {movies.map(
               (movie) =>
                 movie.backdrop_path && (
                   <div
                     key={movie.id}
-                    className="min-w-[200px] lg:min-w-[250px] transition-transform duration-300 ease-in-out group"
+                    className="transition-transform duration-300 ease-in-out group"
                   >
                     <div className="w-full">
                       <img
@@ -69,80 +104,6 @@ const MovieRecipe = () => {
                   </div>
                 )
             )}
-          </div>
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <Link
-            to={{
-              pathname: "/movies",
-            }}
-            state={{
-              genreId: genreId,
-              genreName: genreName,
-              genreColor: genreColor,
-            }}
-            className="border-2 border-secondaryColor px-4 py-2 rounded-full text-lg flex items-center justify-center hover:bg-secondaryColor hover:text-primaryColor transition duration-300"
-          >
-            Explore More
-            <ArrowRightIcon className="h-6 w-6 ml-2" />
-          </Link>
-        </div>
-      </div>
-
-      {/* Recipe Section */}
-      <div className="mt-20">
-        <div className="pb-20">
-          <h1 className="py-8 text-4xl sm:text-5xl">Recipes</h1>
-          <Link
-            className="flex text-center items-center py-10 cursor-pointer gap-5"
-            to={{
-              pathname: "/my-list",
-            }}
-            state={{ selectedTab: "Recipes" }}
-          >
-            <h2 className="text-3xl">My List</h2>
-            <ChevronRightIcon className="h-6 w-6" />
-          </Link>
-          <h2 className="text-3xl py-3">Popular Recipes</h2>
-          <div className="overflow-x-scroll scrollbar-hide pb-10">
-            <div className="flex gap-3">
-              {recipes.map((recipe) => (
-                <div
-                  key={recipe.id}
-                  className="flex-shrink-0 w-64 flex flex-col items-center"
-                >
-                  <Link
-                    to={{
-                      pathname: "/recipe",
-                    }}
-                    state={{ recipeId: recipe.id }}
-                  >
-                    <img
-                      src={recipe.image}
-                      alt={recipe.title}
-                      className="mt-2 object-cover hover:opacity-60 transition duration-300 rounded-lg w-64 h-64"
-                    />
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link
-              to={{
-                pathname: "/recipes",
-              }}
-              state={{
-                genreId: genreId,
-                genreName: genreName,
-                genreColor: genreColor,
-              }}
-              className="border-2 border-secondaryColor px-4 py-2 rounded-full text-lg flex items-center justify-center hover:bg-secondaryColor hover:text-primaryColor transition duration-300"
-            >
-              Explore More
-              <ArrowRightIcon className="h-6 w-6 ml-2" />
-            </Link>
           </div>
         </div>
       </div>

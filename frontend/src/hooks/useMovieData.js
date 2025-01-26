@@ -62,14 +62,13 @@ const useMovieData = () => {
     }
   }, [genres]);
 
-  // Fetch movies by genre ID
-  const fetchMovies = async () => {
+  // Fetch popular movies by genre ID
+  const fetchPopularMoviesByGenre = async (id) => {
     try {
       const response = await apiClient.get("/discover/movie", {
         params: {
           language: "en-US",
-          page: 1,
-          with_genres: 28,
+          with_genres: id,
           sort_by: "popularity.desc",
         },
       });
@@ -120,7 +119,7 @@ const useMovieData = () => {
     genres,
     topRatedMoviesByGenre,
     movieDetails,
-    fetchMovies,
+    fetchPopularMoviesByGenre,
     fetchMovieDetails,
     fetchImages,
   };

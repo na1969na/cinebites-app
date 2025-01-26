@@ -12,8 +12,9 @@ export default {
         // accentColor: "#0AE448",
         accentColor2: "#FFFCE1",
         primaryColor: "#add8e6",
-        secondaryColor: "#005b4e",
+        secondaryColor: "#BEF3FE",
         tertiaryColor: "#F3F0E7",
+        quaternaryColor: "#FFFCE1",
       },
       fontFamily: {
         publico: ["PublicoBanner", "serif"],
