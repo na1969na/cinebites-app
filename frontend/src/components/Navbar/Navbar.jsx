@@ -36,7 +36,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/movies"
+                to="/post-recipe"
                 className="text-lg transform transition-transform duration-300 hover:rotate-6"
               >
                 Post

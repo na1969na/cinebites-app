@@ -47,7 +47,7 @@ const MovieRecipe = () => {
           state={{ selectedTab: "Movies" }}
         >
           <h2 className="text-3xl">My List</h2>
-          <ChevronRightIcon class="h-6 w-6" />
+          <ChevronRightIcon className="h-6 w-6" />
         </Link>
         <h2 className="py-3 text-3xl">Top 20 {genreName} Movies Today</h2>
         <div className="relative overflow-hidden pb-10">
@@ -63,7 +63,7 @@ const MovieRecipe = () => {
                       <img
                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                         alt={movie.title}
-                        className="w-full h-auto rounded-sm"
+                        className="w-full h-auto rounded-3xl"
                       />
                     </div>
                   </div>
@@ -102,7 +102,7 @@ const MovieRecipe = () => {
             state={{ selectedTab: "Recipes" }}
           >
             <h2 className="text-3xl">My List</h2>
-            <ChevronRightIcon class="h-6 w-6" />
+            <ChevronRightIcon className="h-6 w-6" />
           </Link>
           <h2 className="text-3xl py-3">Popular Recipes</h2>
           <div className="overflow-x-scroll scrollbar-hide pb-10">

@@ -7,6 +7,7 @@ import MovieRecipe from "./pages/MovieRecipe/MovieRecipe";
 import Movies from "./pages/Movies/Movies";
 import Recipes from "./pages/Recipes/Recipes";
 import MyList from "./pages/MyList/MyList";
+import PostRecipe from "./pages/PostRecipe/PostRecipe";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/movies" element={<Movies />} />
           <Route path="/recipes" element={<Recipes />} />
           <Route path="/my-list" element={<MyList />} />
+          <Route path="/post-recipe" element={<PostRecipe />} />
         </Routes>
       </Layout>
     </div>
