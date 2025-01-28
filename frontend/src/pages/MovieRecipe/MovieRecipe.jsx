@@ -7,13 +7,24 @@ const MovieRecipe = () => {
   const location = useLocation();
   const { genreId, genreName } = location.state || {};
   const [movies, setMovies] = useState([]);
-  const { fetchPopularMoviesByGenre } = useMovieData();
+  const { fetchPopularMoviesByGenre, fetchVideos } = useMovieData();
   const [searchTerm, setSearchTerm] = useState("");
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [recipes, setRecipes] = useState([]);
+  const [video, setVideo] = useState({});
+  const [movieTitle, setMovieTitle] = useState("");
 
   useEffect(() => {
-    fetchPopularMoviesByGenre(genreId).then((movies) => setMovies(movies));
+    fetchPopularMoviesByGenre(genreId).then((movies) => {
+      setMovies(movies);
+      setMovieTitle(movies[0].title);
+      if (movies.length > 0) {
+        fetchVideos(movies[0].id).then((video) => {
+          console.log(video);
+          setVideo(video);
+        });
+      }
+    });
   }, [genreId]);
 
   useEffect(() => {
@@ -33,14 +44,39 @@ const MovieRecipe = () => {
   };
 
   return (
-    <div className="font-mori pt-16">
-      <div className="px-20">
-        <div className="py-10 text-center flex items-center justify-center border-b border-quaternaryColor">
-          <h1 className="text-8xl font-semibold">{genreName}</h1>
-        </div>
+    <div className="font-mori pt-10 relative w-full">
+      {/* Background Video */}
+      <div className="relative w-full h-[100vh]">
+        {video.key ? (
+          <iframe
+            className="absolute top-0 left-0 w-full h-full object-cover"
+            src={`https://www.youtube.com/embed/${video.key}?autoplay=1&loop=1&mute=1&cc_load_policy=0&controls=0&playlist=${video.key}`}
+            title="Latest Official Movie Trailer"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          ></iframe>
+        ) : (
+          <div className="flex items-center justify-center w-full h-full bg-black">
+            <p className="text-white text-xl">Loading official trailer...</p>
+          </div>
+        )}
 
-        {/* Recipe Section */}
-        <div className="py-10">
+        {/* Overlay */}
+        <div className="absolute top-0 left-0 w-full h-full bg-black/50"></div>
+
+        <div className="absolute bottom-20 left-10 text-white text-6xl font-bold z-10">
+          {movieTitle}
+        </div>
+      </div>
+
+      {/* Recipe Section */}
+      <div className="py-10">
+        <div className="px-20">
+          <div className="py-12 my-10 bg-secondaryColor">
+            <h1 className="text-6xl font-semibold px-10 text-black">
+              {genreName}
+            </h1>
+          </div>
           <h2 className="text-2xl py-3 font-bold">Recommended Recipes</h2>
           <div className="overflow-x-scroll scrollbar-hide pb-10">
             <div className="flex gap-3">
@@ -67,7 +103,7 @@ const MovieRecipe = () => {
           </div>
         </div>
 
-        <div className="flex gap-4 w-full sm:w-auto">
+        <div className="px-40 flex justify-end gap-4 w-full sm:w-auto">
           <button
             className="cursor-pointer hover:opacity-70"
             onClick={handleButtonClick}
@@ -85,7 +121,7 @@ const MovieRecipe = () => {
           )}
         </div>
 
-        <div className="relative overflow-hidden pb-10">
+        <div className="px-20 py-10 relative pb-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {movies.map(
               (movie) =>

@@ -79,6 +79,30 @@ const useMovieData = () => {
     }
   };
 
+  // Fetch videos by movie ID
+  const fetchVideos = async (movieId) => {
+    try {
+      const response = await apiClient.get(`/movie/${movieId}/videos`);
+      const videos = response.data.results;
+      const filteredVideos = videos.filter(
+        (video) =>
+          video.official === true &&
+          video.site === "YouTube" &&
+          video.type === "Teaser"
+      );
+      
+      const latestVideo = filteredVideos.reduce((latest, current) => {
+        const latestDate = new Date(latest.published_at);
+        const currentDate = new Date(current.published_at);
+        return currentDate > latestDate ? current : latest;
+      }, filteredVideos[0]);
+
+      return latestVideo;
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+    }
+  };
+
   // Fetch movie details by movie ID
   const fetchMovieDetails = async (movieId) => {
     try {
@@ -87,7 +111,7 @@ const useMovieData = () => {
           language: "en-US",
         },
       });
-      setMovieDetails(response.data);
+      return response.data;
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
@@ -118,10 +142,10 @@ const useMovieData = () => {
   return {
     genres,
     topRatedMoviesByGenre,
-    movieDetails,
     fetchPopularMoviesByGenre,
     fetchMovieDetails,
     fetchImages,
+    fetchVideos,
   };
 };
 

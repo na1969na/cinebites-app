@@ -20,14 +20,6 @@ const Navbar = () => {
           <ul className="flex space-x-10">
             <li>
               <Link
-                to="/about"
-                className="text-lg transform transition-transform duration-300 hover:rotate-6"
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
                 to="/my-list"
                 className="text-lg transform transition-transform duration-300 hover:rotate-6"
               >
@@ -36,10 +28,10 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/post-recipe"
+                to="/about"
                 className="text-lg transform transition-transform duration-300 hover:rotate-6"
               >
-                Post
+                About
               </Link>
             </li>
           </ul>

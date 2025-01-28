@@ -21,7 +21,7 @@ const MovieGenreDisplay = () => {
         {genres.map((genre) => (
           <div key={genre.id}>
             <Link
-              className="flex text-center items-center p-5 text-3xl rounded-sm hover:opacity-75 transition duration-300 cursor-pointer ease-in-out gap-5"
+              className="flex text-center items-center py-5 text-3xl rounded-sm hover:opacity-75 transition duration-300 cursor-pointer ease-in-out gap-5"
               to={{
                 pathname: "/movie-recipe",
               }}
