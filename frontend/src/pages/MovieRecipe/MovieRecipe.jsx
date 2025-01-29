@@ -72,8 +72,8 @@ const MovieRecipe = () => {
       {/* Recipe Section */}
       <div className="py-10">
         <div className="px-20">
-          <div className="py-12 my-10 bg-secondaryColor">
-            <h1 className="text-6xl font-semibold px-10 text-black">
+          <div className="py-12 my-10 bg-gradient-to-r from-[#ddf1f6] to-[#45c0d9]">
+            <h1 className="text-4xl font-semibold px-10 tracking-wider text-black">
               {genreName}
             </h1>
           </div>
