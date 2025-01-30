@@ -44,7 +44,7 @@ const MovieRecipe = () => {
   };
 
   return (
-    <div className="font-mori pt-10 relative w-full">
+    <div className="font-mori pt-20 relative w-full">
       {/* Background Video */}
       <div className="relative w-full h-[100vh]">
         {video.key ? (
@@ -64,20 +64,20 @@ const MovieRecipe = () => {
         {/* Overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-black/50"></div>
 
-        <div className="absolute bottom-20 left-10 text-white text-6xl font-bold z-10">
+        <div className="absolute bottom-60 left-10 text-white text-6xl font-bold z-10">
           {movieTitle}
         </div>
       </div>
 
       {/* Recipe Section */}
-      <div className="py-10">
+      <div className="pb-10">
         <div className="px-20">
-          <div className="py-12 my-10 bg-gradient-to-r from-[#ddf1f6] to-[#45c0d9]">
-            <h1 className="text-4xl font-semibold px-10 tracking-wider text-black">
+          <div className="py-12 mb-24 bg-gradient-to-r from-[#ddf1f6] to-[#45c0d9] rounded-sm">
+            <h1 className="text-4xl font-semibold px-10 text-black">
               {genreName}
             </h1>
           </div>
-          <h2 className="text-2xl py-3 font-bold">Recommended Recipes</h2>
+          <h2 className="text-2xl py-3 font-bold">Recipes</h2>
           <div className="overflow-x-scroll scrollbar-hide pb-10">
             <div className="flex gap-3">
               {recipes.map((recipe) => (
@@ -103,7 +103,8 @@ const MovieRecipe = () => {
           </div>
         </div>
 
-        <div className="px-40 flex justify-end gap-4 w-full sm:w-auto">
+        <div className="pr-40 pl-20 flex justify-between gap-4 w-full sm:w-auto">
+        <h2 className="text-2xl py-3 font-bold">{genreName} Movies</h2>
           <button
             className="cursor-pointer hover:opacity-70"
             onClick={handleButtonClick}
