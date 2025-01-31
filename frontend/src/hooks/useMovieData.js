@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const useMovieData = () => {
-  const [genres, setGenres] = useState([]);
-  const [topRatedMoviesByGenre, setTopRatedMoviesByGenre] = useState({});
   const [movieDetails, setMovieDetails] = useState({});
 
   const MOVIE_API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
@@ -18,49 +16,37 @@ const useMovieData = () => {
   });
 
   // Fetch genres
-  useEffect(() => {
-    const fetchGenres = async () => {
-      try {
-        const response = await apiClient.get("/genre/movie/list", {
-          params: {
-            language: "en-US",
-          },
-        });
-        setGenres(response.data.genres);
-      } catch (error) {
-        console.error("Error fetching genres:", error);
-      }
-    };
-    fetchGenres();
-  }, []);
+  const fetchGenres = async () => {
+    const response = await apiClient.get("/genre/movie/list", {
+      params: {
+        language: "en-US",
+      },
+    });
+    return response.data.genres;
+  };
 
   // Fetch top-rated movies by genres ID
-  useEffect(() => {
-    const fetchTopRatedMoviesByGenre = async () => {
-      const movies = {};
-      try {
-        for (const genre of genres) {
-          const response = await apiClient.get("/discover/movie", {
-            params: {
-              language: "en-US",
-              page: 1,
-              sort_by: "vote_average.desc",
-              "vote_count.gte": 1000,
-              with_genres: genre.id,
-            },
-          });
-          movies[genre.name] = response.data.results.slice(0, 10);
-        }
-        setTopRatedMoviesByGenre(movies);
-      } catch (error) {
-        console.error("Error fetching top-rated movies by genre:", error);
-      }
-    };
+  const fetchTopRatedMoviesByGenre = async (genres) => {
+    const movies = {};
 
-    if (genres.length > 0) {
-      fetchTopRatedMoviesByGenre();
-    }
-  }, [genres]);
+    const requests = genres.map(async (genre) => {
+      const response = await apiClient.get("/discover/movie", {
+        params: {
+          language: "en-US",
+          sort_by: "vote_average.desc",
+          "vote_count.gte": 1000,
+          with_genres: genre.id,
+        },
+      });
+      return { [genre.name]: response.data.results.slice(0, 10) };
+    });
+
+    // 全リクエスト完了後に結果をマージ
+    const results = await Promise.all(requests);
+    results.forEach((result) => Object.assign(movies, result));
+    
+    return movies;
+  };
 
   // Fetch popular movies by genre ID
   const fetchPopularMoviesByGenre = async (id) => {
@@ -70,6 +56,7 @@ const useMovieData = () => {
           language: "en-US",
           with_genres: id,
           sort_by: "popularity.desc",
+          page: 1,
         },
       });
       console.log(response.data.results);
@@ -90,7 +77,7 @@ const useMovieData = () => {
           video.site === "YouTube" &&
           video.type === "Teaser"
       );
-      
+
       const latestVideo = filteredVideos.reduce((latest, current) => {
         const latestDate = new Date(latest.published_at);
         const currentDate = new Date(current.published_at);
@@ -140,12 +127,12 @@ const useMovieData = () => {
   };
 
   return {
-    genres,
-    topRatedMoviesByGenre,
+    fetchTopRatedMoviesByGenre,
     fetchPopularMoviesByGenre,
     fetchMovieDetails,
     fetchImages,
     fetchVideos,
+    fetchGenres,
   };
 };
 

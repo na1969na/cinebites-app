@@ -1,6 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { useQuery } from '@tanstack/react-query';
 import useMovieData from "../../hooks/useMovieData";
 
 const MovieRecipe = () => {
@@ -20,7 +21,6 @@ const MovieRecipe = () => {
       setMovieTitle(movies[0].title);
       if (movies.length > 0) {
         fetchVideos(movies[0].id).then((video) => {
-          console.log(video);
           setVideo(video);
         });
       }
