@@ -13,7 +13,6 @@ const MovieGenreDisplay = () => {
     error: genresError,
   } = useQuery({ queryKey: ["genres"], queryFn: fetchGenres });
   const genres = genresData || [];
-  console.log(genres);
 
   // Fetch top-rated movies by genres ID
   const {
@@ -41,26 +40,26 @@ const MovieGenreDisplay = () => {
       </p>
       <p className="text-lg text-center mb-10">
         Explore films and enjoy a matching dish to elevate your movie night
-        experience.{" "}
+        experience.
       </p>
       <div className="relative overflow-hidden pb-10">
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth">
-          {topRatedMovies &&
-            Object.entries(topRatedMovies).map(([genre, movie]) => (
-              <div key={movie.id}>
-                <Link
-                  className="flex text-center items-center py-5 text-3xl rounded-sm hover:opacity-75 transition duration-300 cursor-pointer ease-in-out gap-5"
-                  to={{
-                    pathname: "/movie-recipe",
-                  }}
-                  state={{
-                    genreId: genre.id,
-                    genreName: genre.name,
-                  }}
-                >
-                  <h2 className="text-4xl font-semibold">{genre.name}</h2>
-                  <ChevronRightIcon className="h-8 w-8" />
-                </Link>
+        {topRatedMovies &&
+          Object.entries(topRatedMovies).map(([genre, movie]) => (
+            <div key={movie.id}>
+              <Link
+                className="flex text-center items-center py-5 text-3xl rounded-sm hover:opacity-75 transition duration-300 cursor-pointer ease-in-out gap-5"
+                to={{
+                  pathname: "/movie-recipe",
+                }}
+                state={{
+                  genreId: genre.id,
+                  genreName: genre.name,
+                }}
+              >
+                <h2 className="text-4xl font-semibold">{genre.name}</h2>
+                <ChevronRightIcon className="h-8 w-8" />
+              </Link>
+              <div className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth">
                 <div className="min-w-[200px] lg:min-w-[250px] transition-transform duration-300 ease-in-out group">
                   <div className="w-full">
                     <img
@@ -71,8 +70,8 @@ const MovieGenreDisplay = () => {
                   </div>
                 </div>
               </div>
-            ))}
-        </div>
+            </div>
+          ))}
       </div>
     </div>
   );
