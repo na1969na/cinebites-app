@@ -1,5 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useQuery } from '@tanstack/react-query';
 import useMovieData from "../../hooks/useMovieData";
@@ -7,26 +7,35 @@ import useMovieData from "../../hooks/useMovieData";
 const MovieRecipe = () => {
   const location = useLocation();
   const { genreId, genreName } = location.state || {};
-  const [movies, setMovies] = useState([]);
   const { fetchPopularMoviesByGenre, fetchVideos } = useMovieData();
   const [searchTerm, setSearchTerm] = useState("");
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [video, setVideo] = useState({});
   const [movieTitle, setMovieTitle] = useState("");
 
-  useEffect(() => {
-    fetchPopularMoviesByGenre(genreId).then((movies) => {
-      setMovies(movies);
-      setMovieTitle(movies[0].title);
-      if (movies.length > 0) {
-        fetchVideos(movies[0].id).then((video) => {
-          setVideo(video);
-        });
-      }
-    });
-  }, [genreId]);
+  // Fetch Popular Movies by Genre ID
+  const { data: moviesData, isLoading: moviesLoading, error: moviesError } = useQuery({
+    queryKey: ["popularMovies", genreId],
+    queryFn: () => fetchPopularMoviesByGenre(genreId),
+    enabled: !!genreId,
+  });
 
+  console.log(moviesData);
+
+  // Fetch video by movie ID
+  const {
+    data: videoData,
+    isLoading: videoLoading,
+    error: videoError,
+  } = useQuery({
+    queryKey: ["movieVideo", moviesData?.[0]?.id],
+    queryFn: () => fetchVideos(moviesData[0].id),
+    enabled: !!moviesData?.[0]?.id,
+  });
+
+  console.log(videoData);
+
+  // Fetch recipes
   useEffect(() => {
     fetch("/data.json")
       .then((response) => response.json())
@@ -47,10 +56,10 @@ const MovieRecipe = () => {
     <div className="font-mori pt-20 relative w-full">
       {/* Background Video */}
       <div className="relative w-full h-[100vh]">
-        {video.key ? (
+        {videoData && videoData.key ? (
           <iframe
             className="absolute top-0 left-0 w-full h-full object-cover"
-            src={`https://www.youtube.com/embed/${video.key}?autoplay=1&loop=1&mute=1&cc_load_policy=0&controls=0&playlist=${video.key}`}
+            src={`https://www.youtube.com/embed/${videoData.key}?autoplay=1&loop=1&mute=1&cc_load_policy=0&controls=0&playlist=${videoData.key}`}
             title="Latest Official Movie Trailer"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -124,7 +133,7 @@ const MovieRecipe = () => {
 
         <div className="px-20 py-10 relative pb-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {movies.map(
+            {moviesData && moviesData.map(
               (movie) =>
                 movie.backdrop_path && (
                   <div
