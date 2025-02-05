@@ -25,6 +25,7 @@ export default {
       },
       backgroundImage: {
         headerImage: "url('frontend/src/assets/header_img.jpg')",
+        textGradient: 'radial-gradient(78.77% 78.77% at 71.71% 30.77%, #f0fcff 0%, #9bedff 67.21%, #98ecff 76.04%, #5be1ff 84.9%, #00bae2 94.79%)',
       },
       keyframes: {
         blurInOut: {
