@@ -11,7 +11,6 @@ const MovieRecipe = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [movieTitle, setMovieTitle] = useState("");
 
   // Fetch Popular Movies by Genre ID
   const {
@@ -53,7 +52,7 @@ const MovieRecipe = () => {
             className="absolute top-0 left-0 w-full h-full object-cover"
           />
         ) : (
-          <div className="flex items-center justify-center w-full h-full bg-black">
+          <div className="flex items-center justify-center w-full h-full">
             <p className="text-white text-xl">Loading background image...</p>
           </div>
         )}
@@ -67,11 +66,11 @@ const MovieRecipe = () => {
       </div>
 
       <div className="p-20">
-        <div className="text-transparent bg-clip-text bg-textGradient mb-20">
-          <h1 className="text-7xl font-semibold text-center">{genreName}</h1>
+        <div className=" mb-20">
+          <h1 className="text-7xl text-primaryColor font-semibold">{genreName}</h1>
         </div>
 
-        <div className="border-t">
+        <div className="border-t border-gray-500">
           <h2 className="text-xl py-3 font-bold">Recipes</h2>
         </div>
         <div className="overflow-x-scroll scrollbar-hide pb-20">
@@ -90,7 +89,7 @@ const MovieRecipe = () => {
                   <img
                     src={recipe.image}
                     alt={recipe.title}
-                    className="mt-2 object-cover hover:opacity-60 transition duration-300 rounded-3xl w-50 h-40"
+                    className="mt-2 object-cover hover:opacity-60 transition duration-300 w-50 h-40"
                   />
                 </Link>
               </div>
@@ -98,7 +97,7 @@ const MovieRecipe = () => {
           </div>
         </div>
 
-        <div className="flex justify-between gap-4 w-full sm:w-auto border-t">
+        <div className="flex justify-between gap-4 w-full sm:w-auto border-t border-gray-500">
           <h2 className="text-xl py-3 font-bold">Movies</h2>
           <div className="flex gap-6">
             <button
@@ -113,7 +112,7 @@ const MovieRecipe = () => {
                 placeholder="Search movies..."
                 value={searchTerm}
                 onChange={handleSearchChange}
-                className="px-2 border-b outline-none bg-transparent w-full lg:w-auto text-2xl"
+                className="px-2 border-b border-gray-500 outline-none bg-transparent w-full lg:w-auto text-2xl"
               />
             )}
           </div>
@@ -133,7 +132,7 @@ const MovieRecipe = () => {
                         <img
                           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                           alt={movie.title}
-                          className="w-full h-auto rounded-3xl"
+                          className="w-full h-auto"
                         />
                       </div>
                     </div>
