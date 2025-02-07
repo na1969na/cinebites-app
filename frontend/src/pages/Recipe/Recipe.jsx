@@ -25,7 +25,7 @@ const Recipe = () => {
   }, []);
 
   return (
-    <div className="font-mori pt-10 lg:pt-16 w-full bg-tertiaryColor text-black">
+    <div className="font-mori pt-10 lg:pt-16 w-full text-black">
       <div className="px-20 py-10">
         {recipe && (
           <div>

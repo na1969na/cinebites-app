@@ -67,7 +67,9 @@ const MovieRecipe = () => {
 
       <div className="p-20">
         <div className=" mb-20">
-          <h1 className="text-7xl text-primaryColor font-semibold">{genreName}</h1>
+          <h1 className="text-7xl text-primaryColor font-semibold">
+            {genreName}
+          </h1>
         </div>
 
         <div className="border-t border-gray-500">
@@ -123,18 +125,23 @@ const MovieRecipe = () => {
             {moviesData &&
               moviesData.map(
                 (movie) =>
-                  movie.backdrop_path && (
+                  movie.poster_path && (
                     <div
                       key={movie.id}
                       className="transition-transform duration-300 ease-in-out group"
                     >
-                      <div className="w-full">
+                      <Link
+                        to={{
+                          pathname: "/movie",
+                        }}
+                        state={{ movieId: movie.id }}
+                      >
                         <img
                           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                           alt={movie.title}
-                          className="w-full h-auto"
+                          className="w-full h-auto hover:opacity-60 transition duration-300"
                         />
-                      </div>
+                      </Link>
                     </div>
                   )
               )}

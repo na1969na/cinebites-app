@@ -29,7 +29,7 @@ const MovieGenreDisplay = () => {
 
   return (
     <div className="py-12 font-dmsans">
-      <h1 className="text-xl sm:text-5xl md:text-7xl pb-5 text-center">
+      <h1 className="text-xl sm:text-5xl md:text-5xl pb-5 text-center">
         Choose Your Genre
       </h1>
       <p className="text-xl text-center mb-8">
@@ -40,7 +40,7 @@ const MovieGenreDisplay = () => {
         {genres.map((genre) => (
           <div key={genre.id}>
             <Link
-              className="flex text-7xl items-center py-5 hover:opacity-75 transition duration-300 cursor-pointer ease-in-out"
+              className="flex text-7xl items-center py-5 hover:text-primaryColor transition duration-300 cursor-pointer ease-in-out"
               to={{
                 pathname: "/movie-recipe",
               }}
