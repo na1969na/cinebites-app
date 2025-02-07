@@ -1,9 +1,6 @@
-import { useState } from "react";
 import axios from "axios";
 
 const useMovieData = () => {
-  const [movieDetails, setMovieDetails] = useState({});
-
   const MOVIE_API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
   // Create an Axios instance
@@ -44,7 +41,7 @@ const useMovieData = () => {
     // 全リクエスト完了後に結果をマージ
     const results = await Promise.all(requests);
     results.forEach((result) => Object.assign(movies, result));
-    
+
     return movies;
   };
 
@@ -90,20 +87,19 @@ const useMovieData = () => {
     }
   };
 
-  // Fetch movie details by movie ID
-  const fetchMovieDetails = async (movieId) => {
-    try {
-      const response = await apiClient.get(`/movie/${movieId}`, {
-        params: {
-          language: "en-US",
-        },
-      });
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching movie details:", error);
-    }
+  // Fetch director by movie ID
+  const fetchDirector = async (movieId) => {
+    const response = await apiClient.get(`/movie/${movieId}/credits`, {
+      params: {
+        language: "en-US",
+      },
+    });
+    const crew = response.data.crew;
+    const director = crew.find((member) => member.job === "Director");
+    return director;
   };
 
+  // 不要
   // Fetch images for the About page
   const fetchImages = async (imageMap) => {
     try {
@@ -129,10 +125,10 @@ const useMovieData = () => {
   return {
     fetchTopRatedMoviesByGenre,
     fetchPopularMoviesByGenre,
-    fetchMovieDetails,
     fetchImages,
     fetchVideos,
     fetchGenres,
+    fetchDirector,
   };
 };
 

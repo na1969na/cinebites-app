@@ -66,7 +66,7 @@ const MovieRecipe = () => {
       </div>
 
       <div className="p-20">
-        <div className=" mb-20">
+        <div className="mb-20">
           <h1 className="text-7xl text-primaryColor font-semibold">
             {genreName}
           </h1>
@@ -134,7 +134,7 @@ const MovieRecipe = () => {
                         to={{
                           pathname: "/movie",
                         }}
-                        state={{ movieId: movie.id }}
+                        state={{ movie: movie }}
                       >
                         <img
                           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
