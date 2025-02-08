@@ -99,6 +99,13 @@ const useMovieData = () => {
     return director;
   };
 
+  // Fetch provider by movie ID
+  const fetchProvider = async (movieId) => {
+    const response = await apiClient.get(`/movie/${movieId}/watch/providers`);
+    const providers = response.data.results.CA;
+    return providers;
+  };
+
   // 不要
   // Fetch images for the About page
   const fetchImages = async (imageMap) => {
@@ -129,6 +136,7 @@ const useMovieData = () => {
     fetchVideos,
     fetchGenres,
     fetchDirector,
+    fetchProvider,
   };
 };
 

@@ -5,7 +5,7 @@ import useMovieData from "../../hooks/useMovieData";
 const Movie = () => {
   const location = useLocation();
   const { movie } = location.state || {};
-  const { fetchDirector } = useMovieData();
+  const { fetchDirector, fetchProvider } = useMovieData();
 
   // Fetch director
   const { data: director } = useQuery({
@@ -13,6 +13,30 @@ const Movie = () => {
     queryFn: () => fetchDirector(movie.id),
     enabled: !!movie.id,
   });
+
+  // Fetch provider
+  const { data: providers } = useQuery({
+    queryKey: ["provider", movie.id],
+    queryFn: () => fetchProvider(movie.id),
+    enabled: !!movie.id,
+  });
+
+  const renderProviderSection = (providersList, title) => {
+    if (!providersList || providersList.length === 0) return null;
+
+    return (
+      <div className="mb-6">
+        <h2 className="text-2xl mb-2 text-primaryColor">{title}</h2>
+        <div className="flex flex-wrap gap-4">
+          {providersList.map((provider) => (
+            <div key={provider.provider_id} className="text-center">
+              <p className="text-2xl mt-1">{provider.provider_name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="font-mori">
@@ -40,19 +64,19 @@ const Movie = () => {
       <div className="px-20 py-10">
         <div className="flex my-20 px-10 justify-between gap-10">
           <div className="text-4xl w-1/3">
-            <p className="border-t border-primaryColor py-4 text-2xl text-primaryColor">
+            <h2 className="border-t border-primaryColor py-4 text-2xl text-primaryColor">
               DIRECTED BY
-            </p>
+            </h2>
             {director && <p className="pb-6">{director.name}</p>}
 
-            <p className="border-t border-primaryColor py-4 text-2xl text-primaryColor">
+            <h2 className="border-t border-primaryColor py-4 text-2xl text-primaryColor">
               YEAR
-            </p>
+            </h2>
             <p className="pb-6">{new Date(movie.release_date).getFullYear()}</p>
 
-            <p className="border-t border-primaryColor py-4 text-2xl text-primaryColor">
+            <h2 className="border-t border-primaryColor py-4 text-2xl text-primaryColor">
               RATE
-            </p>
+            </h2>
             <p className="pb-1">
               {movie.vote_average.toFixed(1)}
               <span className="text-2xl"> /10</span>
@@ -62,6 +86,25 @@ const Movie = () => {
           <p className="text-3xl px-10 w-1/2 text-primaryColor">
             {movie.overview}
           </p>
+        </div>
+        <div className="px-10">
+          <div className="border-t border-primaryColor py-4">
+            {renderProviderSection(providers?.flatrate, "STREAM")}
+            {renderProviderSection(providers?.buy, "BUY")}
+            {renderProviderSection(providers?.rent, "RENT")}
+            {providers && (
+              <div className="mt-4">
+                <a
+                  href={providers.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline text-primaryColor text-xl"
+                >
+                  View on TMDb
+                </a>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
