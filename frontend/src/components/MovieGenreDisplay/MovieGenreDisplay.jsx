@@ -33,8 +33,8 @@ const MovieGenreDisplay = () => {
         Choose Your Genre
       </h1>
       <p className="text-xl text-center mb-8">
-        Discover top-rated movies by genre and find your next favorite film.
-        Click on a genre to explore more.
+        Choose a genre, find matching films, and get delicious recipes to
+        complement your cinematic journey.
       </p>
       <div className="">
         {genres.map((genre) => (
