@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
-    <footer className="py-8 font-mori">
+    <footer className="py-8">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <div className="flex lg:flex-1 font-publico text-3xl">
+            <div className="flex lg:flex-1 text-3xl">
               <div className="flex items-center">
                 CineBites
                 <img
@@ -14,24 +16,24 @@ const Footer = () => {
                 />
               </div>
             </div>
-            <p className="">
-              Pair your favorite movies with delicious recipes.
-            </p>
           </div>
           <div className="flex space-x-4">
-            <a href="/" className=" hover:text-white transition duration-300">
-              Home
-            </a>
-            <a
-              href="/about"
-              className=" hover:text-white transition duration-300"
+            <Link
+              to="/"
+              className="border border-black rounded-full py-1 px-6 hover:bg-black hover:text-gray-300"
             >
-              About
-            </a>
+              <div className="flex items-center">Home</div>
+            </Link>
+            <Link
+              to="/about"
+              className="border border-black rounded-full py-1 px-6 hover:bg-black hover:text-gray-300"
+            >
+              <div className="flex items-center">About</div>
+            </Link>
           </div>
-        </div>
-        <div className="mt-8 text-center ">
-          &copy; {new Date().getFullYear()} CineBites. All rights reserved.
+          <div className="">
+            &copy; {new Date().getFullYear()} CineBites. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>

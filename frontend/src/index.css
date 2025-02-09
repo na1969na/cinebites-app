@@ -2,26 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-@layer base {
-  @font-face {
-    font-family: "PublicoBanner";
-    src: url("/src/assets/fonts/PublicoBanner.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-  }
-}
-
-@layer base {
-  @font-face {
-    font-family: "VastagoGrotesk";
-    src: url("/src/assets/fonts/VastagoGrotesk.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-  }
-}
-
 @layer base {
   @font-face {
     font-family: "Mori";

@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <header className="top-0 left-0 w-full z-50 bg-transparent fixed">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between py-3 px-4 lg:px-4 h-[3rem] md:h-[4rem]">
-        <div className="font-publico text-xl md:text-3xl">
+        <div className="text-xl md:text-3xl flex justify-center py-14">
           <Link to="/" className="-m-1.5">
             <div className="flex items-center">
               CineBites
@@ -16,27 +15,6 @@ const Navbar = () => {
             </div>
           </Link>
         </div>
-        <div className="flex flex-row items-center md:gap-6">
-          <ul className="flex space-x-10">
-            <li>
-              <Link
-                to="/my-list"
-                className="text-lg transform transition-transform duration-300 hover:rotate-6"
-              >
-                My List
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/about"
-                className="text-lg transform transition-transform duration-300 hover:rotate-6"
-              >
-                About
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
     </header>
   );
 };
