@@ -1,9 +1,10 @@
 import { useLocation, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import useMovieData from "../../hooks/useMovieData";
 import { DebounceInput } from "react-debounce-input";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 const MovieRecipe = () => {
   const location = useLocation();
@@ -12,24 +13,45 @@ const MovieRecipe = () => {
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [activeTab, setActiveTab] = useState("MOVIES");
+  const observer = useRef();
 
   // Fetch Popular Movies by Genre ID
-  const {
-    data: moviesData,
-    isLoading: moviesLoading,
-    error: moviesError,
-  } = useQuery({
-    queryKey: ["popularMovies", genreId],
-    queryFn: () => fetchPopularMoviesByGenre(genreId),
-    enabled: !!genreId,
-  });
+  const { data, error, fetchNextPage, hasNextPage, isFetching, isLoading } =
+    useInfiniteQuery({
+      queryKey: ["popularMovies", genreId],
+      queryFn: (pageParam) => fetchPopularMoviesByGenre(genreId, pageParam),
+      initialPageParam: 0,
+      getNextPageParam: (lastPage, allPages) => {
+        return lastPage.length ? allPages.length + 1 : undefined;
+      },
+      enabled: !!genreId,
+    });
+
+  const lastElementRef = useCallback(
+    (node) => {
+      if (isLoading) return;
+
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasNextPage && !isFetching) {
+          fetchNextPage();
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [fetchNextPage, hasNextPage, isFetching, isLoading]
+  );
+
+  const moviesData = useMemo(() => {
+    return data?.pages.reduce((acc, page) => {
+      return [...acc, ...page];
+    }, []);
+  }, [data]);
 
   // Serach movies by keyword
-  const {
-    data: searchResults,
-    isLoading: searchLoading,
-    error: searchError,
-  } = useQuery({
+  const { searchResults, searchLoading, searchError } = useQuery({
     queryKey: ["movies", query],
     queryFn: () => fetchMovies(query),
     enabled: !!query,
@@ -49,6 +71,23 @@ const MovieRecipe = () => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
+  if (isLoading) return <h1>Carregando mais dados...</h1>;
+
+  if (error) return <h1>Erro ao carregar os dados</h1>;
+
+  // return (
+  //   <div>
+  //     {movies &&
+  //       movies.map((item) => (
+  //         <div key={item.id} ref={lastElementRef}>
+  //           <p>{item.title}</p>
+  //         </div>
+  //       ))}
+
+  //     {isFetching && <div>Carregando mais dados...</div>}
+  //   </div>
+  // );
 
   return (
     <div className="font-mori">
@@ -144,6 +183,7 @@ const MovieRecipe = () => {
                       movie.poster_path && (
                         <div
                           key={movie.id}
+                          ref={lastElementRef}
                           className="transition-transform duration-300 ease-in-out group"
                         >
                           <Link
@@ -161,6 +201,7 @@ const MovieRecipe = () => {
                         </div>
                       )
                   )}
+                {isFetching && <div>Carregando mais dados...</div>}
 
                 {movies && movies.length === 0 && <p>No movies found.</p>}
               </div>
