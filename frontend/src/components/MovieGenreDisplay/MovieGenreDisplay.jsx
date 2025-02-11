@@ -14,7 +14,7 @@ const MovieGenreDisplay = () => {
   const genres = genresData || [];
 
   return (
-    <div className="py-12 font-dmsans">
+    <div className="py-12 px-20">
       <h1 className="text-xl sm:text-5xl md:text-3xl text-center text-black font-semibold">
         CHOOSE YOUR GENRE
       </h1>
@@ -26,7 +26,7 @@ const MovieGenreDisplay = () => {
         {genres.map((genre) => (
           <div key={genre.id}>
             <Link
-              className="flex text-6xl px-10 py-6 text-primaryColor hover:text-accentColor2 hover:bg-primaryColor transition duration-300 cursor-pointer ease-in-out border border-gray-800 rounded-full"
+              className="flex text-6xl px-10 py-6 text-primaryColor hover:text-secondaryColor hover:bg-primaryColor transition duration-300 cursor-pointer ease-in-out border border-gray-800 rounded-full"
               to={{
                 pathname: "/movie-recipe",
               }}

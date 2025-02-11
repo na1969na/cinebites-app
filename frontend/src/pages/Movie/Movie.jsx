@@ -62,7 +62,7 @@ const Movie = () => {
       </div>
 
       <div className="px-20 py-10">
-        <div className="flex my-20 px-10 justify-between gap-10">
+        <div className="flex my-10 px-10 justify-between gap-10">
           <div className="text-4xl w-1/3">
             <h2 className="border-t border-primaryColor py-4 text-2xl text-primaryColor">
               DIRECTED BY

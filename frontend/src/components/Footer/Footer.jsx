@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="py-8">
+    <footer className="py-12 bg-black text-secondaryColor">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
@@ -20,13 +20,13 @@ const Footer = () => {
           <div className="flex space-x-4">
             <Link
               to="/"
-              className="border border-black rounded-full py-1 px-6 hover:bg-black hover:text-gray-300"
+              className="border border-secondaryColor rounded-full py-1 px-6 hover:bg-secondaryColor hover:text-black"
             >
               <div className="flex items-center">Home</div>
             </Link>
             <Link
               to="/about"
-              className="border border-black rounded-full py-1 px-6 hover:bg-black hover:text-gray-300"
+              className="border border-secondaryColor rounded-full py-1 px-6 hover:bg-secondaryColor hover:text-black"
             >
               <div className="flex items-center">About</div>
             </Link>

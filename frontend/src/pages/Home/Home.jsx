@@ -3,7 +3,7 @@ import MovieGenreDisplay from "../../components/MovieGenreDisplay/MovieGenreDisp
 
 const Home = () => {
   return (
-    <div className="px-20">
+    <div>
       <Header />
       <MovieGenreDisplay />
     </div>

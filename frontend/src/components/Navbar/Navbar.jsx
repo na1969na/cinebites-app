@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <header className="top-0 left-0 w-full z-50 bg-transparent fixed">
-        <div className="text-xl md:text-3xl flex justify-center py-14">
+    <header className="top-0 left-0 w-full z-50 bg-transparent">
+        <div className="text-xl md:text-3xl flex justify-center py-6">
           <Link to="/" className="-m-1.5">
             <div className="flex items-center">
               CineBites

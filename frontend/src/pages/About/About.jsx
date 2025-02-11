@@ -1,10 +1,21 @@
 const About = () => {
   return (
     <div>
-      <div>
-        
+      <div className="relative w-full h-[80vh]">
+        <img
+          src="/about_image.png"
+          alt="Cinema seats"
+          className="absolute top-0 left-0 w-full h-full object-cover"
+        />
       </div>
-      <div className="flex flex-col md:flex-row gap-6 w-full px-20 py-10 bg-white">
+      {/* Overlay */}
+      <div className="absolute top-0 left-0 w-full h-[80h] bg-black/30"></div>
+
+      <div className="absolute top-20 left-10 text-white text-8xl font-bold z-10">
+        CINEBITES
+      </div>
+
+      <div className="flex flex-col md:flex-row gap-6 w-full px-20 py-20 bg-white">
         <h2 className="text-3xl sm:text-6xl md:text-8xl font-helvetica w-full">
           Discover Movies, <br />
           Delight in Recipes
@@ -16,7 +27,7 @@ const About = () => {
           place.
         </p>
       </div>
-      <div className="flex flex-col md:flex-row-reverse gap-6 w-full px-20 py-10 bg-accentBackground">
+      <div className="flex flex-col md:flex-row-reverse gap-10 w-full px-20 py-20 bg-white mt-10">
         <h2 className="text-3xl sm:text-6xl md:text-8xl font-helvetica w-full md:w-[40rem] text-right">
           Why CineBites?
         </h2>

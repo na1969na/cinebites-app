@@ -12,7 +12,7 @@ export default {
         // accentColor: "#0AE448",
         accentColor2: "#FFFCE1",
         primaryColor: "#11318F",
-        secondaryColor: "#BEF3FE",
+        secondaryColor: "#EAEAEA",
         tertiaryColor: "#F3F0E7",
         quaternaryColor: "#FFFCE1",
       },
