@@ -22,45 +22,17 @@ const useMovieData = () => {
     return response.data.genres;
   };
 
-  // Fetch top-rated movies by genres ID
-  const fetchTopRatedMoviesByGenre = async (genres) => {
-    const movies = {};
-
-    const requests = genres.map(async (genre) => {
-      const response = await apiClient.get("/discover/movie", {
-        params: {
-          language: "en-US",
-          sort_by: "vote_average.desc",
-          "vote_count.gte": 1000,
-          with_genres: genre.id,
-        },
-      });
-      return { [genre.name]: response.data.results.slice(0, 10) };
-    });
-
-    // 全リクエスト完了後に結果をマージ
-    const results = await Promise.all(requests);
-    results.forEach((result) => Object.assign(movies, result));
-
-    return movies;
-  };
-
   // Fetch popular movies by genre ID
   const fetchPopularMoviesByGenre = async (id) => {
-    try {
-      const response = await apiClient.get("/discover/movie", {
-        params: {
-          language: "en-US",
-          with_genres: id,
-          sort_by: "popularity.desc",
-          page: 1,
-        },
-      });
-      console.log(response.data.results);
-      return response.data.results;
-    } catch (error) {
-      console.error("Error fetching movies:", error);
-    }
+    const response = await apiClient.get("/discover/movie", {
+      params: {
+        language: "en-US",
+        with_genres: id,
+        sort_by: "popularity.desc",
+        page: 1,
+      },
+    });
+    return response.data.results;
   };
 
   // Fetch videos by movie ID
@@ -106,37 +78,24 @@ const useMovieData = () => {
     return providers;
   };
 
-  // 不要
-  // Fetch images for the About page
-  const fetchImages = async (imageMap) => {
-    try {
-      const images = [];
-      for (const { movieId, index } of imageMap) {
-        const response = await apiClient.get(`/movie/${movieId}/images`);
-        const backdrops = response.data.backdrops;
-        const selectedImage = backdrops[index];
-        if (selectedImage) {
-          images.push(
-            `https://image.tmdb.org/t/p/original${selectedImage.file_path}`
-          );
-        } else {
-          console.warn(`No backdrops found for movie ID: ${movieId}`);
-        }
-      }
-      return images;
-    } catch (error) {
-      console.error("Error fetching images:", error);
-    }
+  // Fetch movie by keyword
+  const fetchMovies = async (query) => {
+    const response = await apiClient.get("/search/movie", {
+      params: {
+        query,
+        language: "en-US",
+      },
+    });
+    return response.data.results;
   };
 
   return {
-    fetchTopRatedMoviesByGenre,
     fetchPopularMoviesByGenre,
-    fetchImages,
     fetchVideos,
     fetchGenres,
     fetchDirector,
     fetchProvider,
+    fetchMovies,
   };
 };
 

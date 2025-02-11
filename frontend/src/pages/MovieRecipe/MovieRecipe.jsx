@@ -3,18 +3,15 @@ import { useState, useEffect } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import useMovieData from "../../hooks/useMovieData";
+import { DebounceInput } from "react-debounce-input";
 
 const MovieRecipe = () => {
   const location = useLocation();
   const { genreId, genreName } = location.state || {};
-  const { fetchPopularMoviesByGenre } = useMovieData();
-  const [searchTerm, setSearchTerm] = useState("");
+  const { fetchPopularMoviesByGenre, fetchMovies } = useMovieData();
+  const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [activeTab, setActiveTab] = useState("MOVIES");
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
 
   // Fetch Popular Movies by Genre ID
   const {
@@ -27,7 +24,18 @@ const MovieRecipe = () => {
     enabled: !!genreId,
   });
 
-  console.log(moviesData);
+  // Serach movies by keyword
+  const {
+    data: searchResults,
+    isLoading: searchLoading,
+    error: searchError,
+  } = useQuery({
+    queryKey: ["movies", query],
+    queryFn: () => fetchMovies(query),
+    enabled: !!query,
+  });
+
+  const movies = query ? searchResults : moviesData;
 
   // Fetch recipes
   useEffect(() => {
@@ -117,20 +125,21 @@ const MovieRecipe = () => {
                 <button>
                   <MagnifyingGlassIcon className="h-10 w-10" />
                 </button>
-                <input
-                  type="text"
+                <DebounceInput
+                  debounceTimeout={300}
+                  minLength={2}
                   placeholder="Search movies..."
-                  value={searchTerm}
-                  onChange={handleSearchChange}
                   className="px-2 py-2 outline-none w-full lg:w-auto text-2xl"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
                 />
               </div>
             </div>
 
             <div className="py-10 relative">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-                {moviesData &&
-                  moviesData.map(
+                {movies &&
+                  movies.map(
                     (movie) =>
                       movie.poster_path && (
                         <div
@@ -152,6 +161,8 @@ const MovieRecipe = () => {
                         </div>
                       )
                   )}
+
+                {movies && movies.length === 0 && <p>No movies found.</p>}
               </div>
             </div>
           </div>
