@@ -8,7 +8,7 @@ import Movies from "./pages/Movies/Movies";
 import Recipes from "./pages/Recipes/Recipes";
 import MyList from "./pages/MyList/MyList";
 import Movie from "./pages/Movie/Movie";
-
+import SearchResults from "./pages/SearchResults/SearchResults";
 
 const App = () => {
   return (
@@ -23,6 +23,7 @@ const App = () => {
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/my-list" element={<MyList />} />
             <Route path="/movie" element={<Movie />} />
+            <Route path="/search" element={<SearchResults />} />
           </Routes>
         </Layout>
     </div>

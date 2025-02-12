@@ -76,19 +76,6 @@ const MovieRecipe = () => {
 
   if (error) return <h1>Erro ao carregar os dados</h1>;
 
-  // return (
-  //   <div>
-  //     {movies &&
-  //       movies.map((item) => (
-  //         <div key={item.id} ref={lastElementRef}>
-  //           <p>{item.title}</p>
-  //         </div>
-  //       ))}
-
-  //     {isFetching && <div>Carregando mais dados...</div>}
-  //   </div>
-  // );
-
   return (
     <div className="font-mori">
       <div className="px-20 py-10">
@@ -159,24 +146,8 @@ const MovieRecipe = () => {
         {/* Movie Tab */}
         {activeTab === "MOVIES" && (
           <div className="px-5 py-10">
-            <div className="flex justify-between gap-4 w-full sm:w-auto ">
-              <div className="flex gap-6">
-                <button>
-                  <MagnifyingGlassIcon className="h-10 w-10" />
-                </button>
-                <DebounceInput
-                  debounceTimeout={300}
-                  minLength={2}
-                  placeholder="Search movies..."
-                  className="px-2 py-2 outline-none w-full lg:w-auto text-2xl"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                />
-              </div>
-            </div>
-
             <div className="py-10 relative">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1">
                 {movies &&
                   movies.map(
                     (movie) =>

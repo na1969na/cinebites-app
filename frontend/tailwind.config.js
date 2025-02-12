@@ -13,8 +13,8 @@ export default {
         accentColor2: "#FFFCE1",
         primaryColor: "#11318F",
         secondaryColor: "#EAEAEA",
-        tertiaryColor: "#F3F0E7",
-        quaternaryColor: "#FFFCE1",
+        tertiaryColor: "#FEFBE1",
+        quaternaryColor: "#FF6C19",
       },
       fontFamily: {
         helvetica: ["Helvetica", "serif"],
