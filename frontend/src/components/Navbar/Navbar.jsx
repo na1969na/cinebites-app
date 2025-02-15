@@ -18,8 +18,14 @@ const Navbar = () => {
     setSearchQuery(event.target.value);
   };
 
+  const clickSearch = () => {
+    if (!searchQuery) return;
+    navigate(`/search?query=${searchQuery}`);
+    toggleSearch();
+  }
+
   const handleInputKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && searchQuery) {
       navigate(`/search?query=${searchQuery}`);
       toggleSearch();
     }
@@ -48,13 +54,12 @@ const Navbar = () => {
             onKeyDown={handleInputKeyDown}
             className="w-full p-2 outline-none bg-transparent text-5xl border-b border-secondaryColor text-secondaryColor"
           />
-          <Link
-            to={`/search?query=${searchQuery}`}
-            onClick={toggleSearch}
+          <button
+            onClick={clickSearch}
             className="ml-2 p-2 text-secondaryColor flex items-center"
           >
             <ArrowRightIcon className="h-12 w-12 mr-1" />
-          </Link>
+          </button>
           <button
             onClick={toggleSearch}
             className="absolute top-8 right-12 p-2 text-secondaryColor flex items-center"

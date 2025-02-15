@@ -27,11 +27,12 @@ const SearchResults = () => {
   };
 
   const handleSearch = () => {
+    if (!inputValue) return;
     setSearchQuery(inputValue);
   };
 
   const handleInputKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && inputValue) {
       handleSearch();
     }
   };
