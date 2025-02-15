@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -7,6 +7,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 const Navbar = () => {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   const toggleSearch = () => {
     setIsSearchVisible(!isSearchVisible);
@@ -15,6 +16,13 @@ const Navbar = () => {
 
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter") {
+      navigate(`/search?query=${searchQuery}`);
+      toggleSearch();
+    }
   };
 
   return (
@@ -37,6 +45,7 @@ const Navbar = () => {
             placeholder="Search movies..."
             value={searchQuery}
             onChange={handleInputChange}
+            onKeyDown={handleInputKeyDown}
             className="w-full p-2 outline-none bg-transparent text-5xl border-b border-secondaryColor text-secondaryColor"
           />
           <Link

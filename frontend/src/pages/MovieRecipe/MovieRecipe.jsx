@@ -1,22 +1,18 @@
 import { useLocation, Link } from "react-router-dom";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useQuery } from "@tanstack/react-query";
-import useMovieData from "../../hooks/useMovieData";
-import { DebounceInput } from "react-debounce-input";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import useMovieData from "../../hooks/useMovieData";
 
 const MovieRecipe = () => {
   const location = useLocation();
   const { genreId, genreName } = location.state || {};
-  const { fetchPopularMoviesByGenre, fetchMovies } = useMovieData();
-  const [query, setQuery] = useState("");
+  const { fetchPopularMoviesByGenre } = useMovieData();
   const [recipes, setRecipes] = useState([]);
   const [activeTab, setActiveTab] = useState("MOVIES");
   const observer = useRef();
 
   // Fetch Popular Movies by Genre ID
-  const { data, error, fetchNextPage, hasNextPage, isFetching, isLoading } =
+  const { data, fetchNextPage, hasNextPage, isFetching, isLoading, isError } =
     useInfiniteQuery({
       queryKey: ["popularMovies", genreId],
       queryFn: (pageParam) => fetchPopularMoviesByGenre(genreId, pageParam),
@@ -44,20 +40,11 @@ const MovieRecipe = () => {
     [fetchNextPage, hasNextPage, isFetching, isLoading]
   );
 
-  const moviesData = useMemo(() => {
+  const movies = useMemo(() => {
     return data?.pages.reduce((acc, page) => {
       return [...acc, ...page];
     }, []);
   }, [data]);
-
-  // Serach movies by keyword
-  const { searchResults, searchLoading, searchError } = useQuery({
-    queryKey: ["movies", query],
-    queryFn: () => fetchMovies(query),
-    enabled: !!query,
-  });
-
-  const movies = query ? searchResults : moviesData;
 
   // Fetch recipes
   useEffect(() => {
@@ -71,10 +58,6 @@ const MovieRecipe = () => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-
-  if (isLoading) return <h1>Carregando mais dados...</h1>;
-
-  if (error) return <h1>Erro ao carregar os dados</h1>;
 
   return (
     <div className="font-mori">
@@ -172,8 +155,11 @@ const MovieRecipe = () => {
                         </div>
                       )
                   )}
-                {isFetching && <div>Carregando mais dados...</div>}
+                  
 
+                {isLoading && <div>Carregando mais dados...</div>}
+                {isFetching && <div>Carregando mais dados...</div>}
+                {isError && <div>Carregando mais dados...</div>}
                 {movies && movies.length === 0 && <p>No movies found.</p>}
               </div>
             </div>
