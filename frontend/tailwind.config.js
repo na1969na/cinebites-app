@@ -7,14 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        accentBackground: "#DD482A",
-        customElements: "#FDFDFD",
-        // accentColor: "#0AE448",
-        accentColor2: "#FFFCE1",
         primaryColor: "#11318F",
         secondaryColor: "#EAEAEA",
         tertiaryColor: "#FEFBE1",
-        quaternaryColor: "#FF6C19",
+        quaternaryColor: "#FF4800",
       },
       fontFamily: {
         helvetica: ["Helvetica", "serif"],

@@ -9,13 +9,13 @@ const SearchResults = () => {
   const query = searchParams.get("query");
   const { fetchMovies } = useMovieData();
   const [searchQuery, setSearchQuery] = useState("");
-  const [ inputValue, setInputValue ] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     setSearchQuery(query);
     setInputValue(query);
   }, [query]);
-  
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ["movies", searchQuery],
     queryFn: () => fetchMovies(searchQuery),
@@ -39,8 +39,8 @@ const SearchResults = () => {
 
   return (
     <div className="bg-tertiaryColor">
-      <div className="flex px-20 py-8 bg-quaternaryColor">
-        <div className="border-b border-black flex w-full justify-between">
+      <div className="flex px-20 py-8 bg-quaternaryColor text-tertiaryColor">
+        <div className="border-b border-tertiaryColor flex w-full justify-between">
           <input
             type="text"
             placeholder="Search movies..."
@@ -49,21 +49,20 @@ const SearchResults = () => {
             onKeyDown={handleInputKeyDown}
             className="px-5 pb-2 outline-none bg-transparent text-5xl placeholder-black"
           />
-          <button
-            className="ml-2 p-2 flex items-center"
-            onClick={handleSearch}
-          >
+          <button className="ml-2 p-2 flex items-center" onClick={handleSearch}>
             <ArrowRightIcon className="h-12 w-12 mr-1" />
           </button>
         </div>
       </div>
-      <div className="px-20 py-10">
+      <div className="px-28 py-10">
         {data && data.length === 0 ? (
           <p className="font-bold text-3xl text-center">No movies found</p>
         ) : (
-          <p className="font-bold text-2xl mb-10">movies found by {searchQuery}</p>
+          <p className="font-bold text-2xl mb-10">
+            movies found by {searchQuery}
+          </p>
         )}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-20">
           {data &&
             data.map(
               (movie) =>
@@ -83,6 +82,14 @@ const SearchResults = () => {
                         alt={movie.title}
                         className="w-full h-auto hover:opacity-60 transition duration-300"
                       />
+                      <div className="px-3 pt-10 text-center">
+                        <h1 className="text-3xl font-semibold text-black">
+                          {movie.title}
+                        </h1>
+                        <p className="text-lg text-gray-500">
+                          {movie.release_date}
+                        </p>
+                      </div>
                     </Link>
                   </div>
                 )

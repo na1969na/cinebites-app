@@ -22,7 +22,7 @@ const Navbar = () => {
     if (!searchQuery) return;
     navigate(`/search?query=${searchQuery}`);
     toggleSearch();
-  }
+  };
 
   const handleInputKeyDown = (e) => {
     if (e.key === "Enter" && searchQuery) {
@@ -46,26 +46,28 @@ const Navbar = () => {
       </div>
       {isSearchVisible && (
         <div className="absolute top-0 left-0 w-full bg-primaryColor p-36 flex items-center">
-          <input
-            type="text"
-            placeholder="Search movies..."
-            value={searchQuery}
-            onChange={handleInputChange}
-            onKeyDown={handleInputKeyDown}
-            className="w-full p-2 outline-none bg-transparent text-5xl border-b border-secondaryColor text-secondaryColor"
-          />
-          <button
-            onClick={clickSearch}
-            className="ml-2 p-2 text-secondaryColor flex items-center"
-          >
-            <ArrowRightIcon className="h-12 w-12 mr-1" />
-          </button>
-          <button
-            onClick={toggleSearch}
-            className="absolute top-8 right-12 p-2 text-secondaryColor flex items-center"
-          >
-            <XMarkIcon className="h-10 w-10" />
-          </button>
+          <div className="flex border-b border-secondaryColor w-full text-secondaryColor">
+            <input
+              type="text"
+              placeholder="Search movies..."
+              value={searchQuery}
+              onChange={handleInputChange}
+              onKeyDown={handleInputKeyDown}
+              className="w-full p-2 outline-none bg-transparent text-5xl "
+            />
+            <button
+              onClick={clickSearch}
+              className="ml-2 p-2 flex items-center"
+            >
+              <ArrowRightIcon className="h-12 w-12 mr-1" />
+            </button>
+            <button
+              onClick={toggleSearch}
+              className="absolute top-8 right-12 p-2 flex items-center"
+            >
+              <XMarkIcon className="h-10 w-10" />
+            </button>
+          </div>
         </div>
       )}
     </header>

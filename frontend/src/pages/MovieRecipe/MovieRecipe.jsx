@@ -63,7 +63,7 @@ const MovieRecipe = () => {
     <div className="font-mori">
       <div className="px-20 py-10">
         <div className="mb-20">
-          <h1 className="text-7xl text-primaryColor font-semibold">
+          <h1 className="text-7xl text-primaryColor font-semibold text-center">
             {genreName}
           </h1>
         </div>
@@ -72,7 +72,7 @@ const MovieRecipe = () => {
           <label className="sr-only">Select your country</label>
           <select
             id="tabs"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           >
             <option>MOVIES</option>
             <option>RECIPES</option>
@@ -128,9 +128,9 @@ const MovieRecipe = () => {
 
         {/* Movie Tab */}
         {activeTab === "MOVIES" && (
-          <div className="px-5 py-10">
+          <div className="px-20 py-10">
             <div className="py-10 relative">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-20">
                 {movies &&
                   movies.map(
                     (movie) =>
@@ -151,11 +151,18 @@ const MovieRecipe = () => {
                               alt={movie.title}
                               className="w-full h-auto hover:opacity-60 transition duration-300"
                             />
+                            <div className="px-3 pt-10 text-center">
+                              <h1 className="text-3xl font-semibold text-black">
+                                {movie.title}
+                              </h1>
+                              <p className="text-lg text-gray-500">
+                                {movie.release_date}
+                              </p>
+                            </div>
                           </Link>
                         </div>
                       )
                   )}
-                  
 
                 {isLoading && <div>Carregando mais dados...</div>}
                 {isFetching && <div>Carregando mais dados...</div>}

@@ -22,11 +22,11 @@ const MovieGenreDisplay = () => {
         Choose a genre, find matching films, and get delicious recipes to
         complement your cinematic journey.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 gap-4 py-10">
+      <div className="py-10">
         {genres.map((genre) => (
           <div key={genre.id}>
             <Link
-              className="flex text-6xl px-10 py-6 text-primaryColor hover:text-secondaryColor hover:bg-primaryColor transition duration-300 cursor-pointer ease-in-out border border-gray-800 rounded-full"
+              className="flex text-4xl px-10 py-3 text-primaryColor hover:pb-10 transition duration-300 cursor-pointer ease-in-out border-2 border-b-0 border-black rounded-t-2xl"
               to={{
                 pathname: "/movie-recipe",
               }}
