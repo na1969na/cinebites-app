@@ -63,43 +63,33 @@ const MovieRecipe = () => {
     <div className="font-mori">
       <div className="px-20 py-10">
         <div className="mb-20">
-          <h1 className="text-7xl text-primaryColor font-semibold text-center">
+          <h1 className="text-9xl text-primaryColor font-semibold text-center">
             {genreName}
           </h1>
         </div>
 
-        <div className="sm:hidden">
-          <label className="sr-only">Select your country</label>
-          <select
-            id="tabs"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+        <div className="flex justify-center items-center gap-5 text-2xl">
+          <button
+            onClick={() => handleTabClick("MOVIES")}
+            className={`px-9 py-3 text-primaryColor border border-primaryColor rounded-full hover:bg-primaryColor hover:text-secondaryColor ${
+              activeTab === "MOVIES"
+                ? "bg-primaryColor text-secondaryColor"
+                : ""
+            }`}
           >
-            <option>MOVIES</option>
-            <option>RECIPES</option>
-          </select>
+            MOVIES
+          </button>
+          <button
+            onClick={() => handleTabClick("RECIPES")}
+            className={`px-9 py-3 text-primaryColor border border-primaryColor rounded-full hover:bg-primaryColor hover:text-secondaryColor ${
+              activeTab === "RECIPES"
+                ? "bg-primaryColor text-secondaryColor"
+                : ""
+            }`}
+          >
+            RECIPES
+          </button>
         </div>
-        <ul className="hidden text-sm font-medium text-center text-gray-500 rounded-lg shadow-sm sm:flex">
-          <li className="w-full focus-within:z-10">
-            <button
-              onClick={() => handleTabClick("MOVIES")}
-              className={`inline-block w-full p-4 text-primaryColor border border-primaryColor rounded-s-lg focus:bg-accentColor2 focus:text active focus:outline-none ${
-                activeTab === "MOVIES" ? "bg-accentColor2" : ""
-              }`}
-            >
-              MOVIES
-            </button>
-          </li>
-          <li className="w-full focus-within:z-10">
-            <button
-              onClick={() => handleTabClick("RECIPES")}
-              className={`inline-block w-full p-4 text-primaryColor border border-primaryColor rounded-e-lg focus:bg-accentColor2 focus:outline-none ${
-                activeTab === "RECIPES" ? "bg-accentColor2" : ""
-              }`}
-            >
-              RECIPES
-            </button>
-          </li>
-        </ul>
 
         {/* Recipe Tab */}
         {activeTab === "RECIPES" && (
