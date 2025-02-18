@@ -1,7 +1,8 @@
 import { useLocation, Link } from "react-router-dom";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import useMovieData from "../../hooks/useMovieData";
+import { generateContent } from "../../hooks/useGoogleGenerativeAI";
 
 const MovieRecipe = () => {
   const location = useLocation();
@@ -54,6 +55,18 @@ const MovieRecipe = () => {
         setRecipes(data);
       });
   }, []);
+
+  const prompt = "Suggest a snack for the movie genre, Action";
+
+  // const {
+  //   data: recipeData,
+  //   isLoading: isRecipeLoading,
+  //   isError: isRecipeError,
+  // } = useQuery({
+  //   queryKey: ["gemini", prompt], 
+  //   queryFn: generateContent(prompt),
+  //   enabled: false,
+  // });
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
