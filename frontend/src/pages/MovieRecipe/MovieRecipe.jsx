@@ -56,15 +56,13 @@ const MovieRecipe = () => {
       });
   }, []);
 
-  const prompt = "Suggest a snack for the movie genre, Action";
-
   // const {
-  //   data: recipeData,
+  //   data: recipes,
   //   isLoading: isRecipeLoading,
   //   isError: isRecipeError,
   // } = useQuery({
-  //   queryKey: ["gemini", prompt], 
-  //   queryFn: generateContent(prompt),
+  //   queryKey: ["gemini", genreName], 
+  //   queryFn: generateContent(genreName),
   //   enabled: false,
   // });
 
@@ -112,18 +110,11 @@ const MovieRecipe = () => {
                 key={recipe.id}
                 className="flex-shrink-0 w-50 flex flex-col items-center"
               >
-                <Link
-                  to={{
-                    pathname: "/recipe",
-                  }}
-                  state={{ recipeId: recipe.id }}
-                >
-                  <img
-                    src={recipe.image}
-                    alt={recipe.title}
-                    className="mt-2 object-cover hover:opacity-60 transition duration-300 w-50 h-40"
-                  />
-                </Link>
+                <div>
+                  <p>{recipe.name}</p>
+                  <p>{recipe.description}</p>
+                  <p>{recipe.name}</p>
+                </div>
               </div>
             ))}
           </div>
