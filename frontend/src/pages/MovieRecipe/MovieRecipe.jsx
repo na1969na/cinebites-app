@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import useMovieData from "../../hooks/useMovieData";
 import { generateContent } from "../../hooks/useGoogleGenerativeAI";
+import FlipCard from "../../components/FlipCard/FlipCard";
 
 const MovieRecipe = () => {
   const location = useLocation();
@@ -11,6 +12,7 @@ const MovieRecipe = () => {
   const [recipes, setRecipes] = useState([]);
   const [activeTab, setActiveTab] = useState("MOVIES");
   const observer = useRef();
+  const [flippedCards, setFlippedCards] = useState(new Array(10).fill(false));
 
   // Fetch Popular Movies by Genre ID
   const { data, fetchNextPage, hasNextPage, isFetching, isLoading, isError } =
@@ -61,13 +63,19 @@ const MovieRecipe = () => {
   //   isLoading: isRecipeLoading,
   //   isError: isRecipeError,
   // } = useQuery({
-  //   queryKey: ["gemini", genreName], 
+  //   queryKey: ["gemini", genreName],
   //   queryFn: generateContent(genreName),
   //   enabled: false,
   // });
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+  };
+
+  const handleCardClick = (index) => {
+    setFlippedCards((prev) =>
+      prev.map((card, i) => (i === index ? !card : card))
+    );
   };
 
   return (
@@ -104,18 +112,15 @@ const MovieRecipe = () => {
 
         {/* Recipe Tab */}
         {activeTab === "RECIPES" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-5 py-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-5 py-10">
             {recipes.map((recipe) => (
-              <div
+              <FlipCard
                 key={recipe.id}
-                className="flex-shrink-0 w-50 flex flex-col items-center"
-              >
-                <div>
-                  <p>{recipe.name}</p>
-                  <p>{recipe.description}</p>
-                  <p>{recipe.name}</p>
-                </div>
-              </div>
+                data={recipe}
+                isFlipped={flippedCards[recipe.id]}
+                onClick={() => handleCardClick(recipe.id)}
+              />
+              
             ))}
           </div>
         )}
