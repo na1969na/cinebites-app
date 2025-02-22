@@ -39,7 +39,7 @@ const Movie = () => {
   };
 
   return (
-    <div className="font-mori">
+    <div>
       <div className="relative w-full h-[80vh]">
         {movie.backdrop_path ? (
           <img

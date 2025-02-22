@@ -15,10 +15,12 @@ export default {
         secondaryColor: "#9BBFF8",
         tertiaryColor: "#2E6F34",
         quaternaryColor: "#EE4027",
+        fifthColor: "#F8F4EC",
       },
       fontFamily: {
         helvetica: ["Helvetica", "serif"],
         mori: ["Mori", "serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
     },
   },
