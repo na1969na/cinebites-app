@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const FlipCard = ({ data, isFlipped, onClick }) => {
-  const { title, comment, ingredients, recipe } = data;
+  const { title, comment } = data;
   return (
     <div
       className="relative w-100 h-72 cursor-pointer perspective-1000 m-2"
@@ -18,9 +18,8 @@ const FlipCard = ({ data, isFlipped, onClick }) => {
         </div>
 
         {/* CardBack */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 flex flex-col justify-center items-center border border-primaryColor p-5">
+        <div className="absolute w-full h-full backface-hidden rotate-y-180 flex flex-col justify-center items-center border border-primaryColor p-10">
           <p>{comment}</p>
-          <button>Recipe</button>
         </div>
       </div>
     </div>

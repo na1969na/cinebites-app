@@ -38,9 +38,9 @@ const SearchResults = () => {
   };
 
   return (
-    <div className="bg-tertiaryColor">
-      <div className="flex px-20 py-8 bg-quaternaryColor text-tertiaryColor">
-        <div className="border-b border-tertiaryColor flex w-full justify-between">
+    <div className="bg-primaryColor">
+      <div className="flex px-20 py-8 bg-quaternaryColor">
+        <div className="border-b border-black flex w-full justify-between">
           <input
             type="text"
             placeholder="Search movies..."
@@ -54,7 +54,7 @@ const SearchResults = () => {
           </button>
         </div>
       </div>
-      <div className="px-28 py-10">
+      <div className="px-28 py-10 text-tertiaryColor">
         {data && data.length === 0 ? (
           <p className="font-bold text-3xl text-center">No movies found</p>
         ) : (
@@ -69,7 +69,7 @@ const SearchResults = () => {
                 movie.poster_path && (
                   <div
                     key={movie.id}
-                    className="transition-transform duration-300 ease-in-out group"
+                    className="transition-transform duration-300 ease-in-out group hover:text-quaternaryColor"
                   >
                     <Link
                       to={{
@@ -83,10 +83,10 @@ const SearchResults = () => {
                         className="w-full h-auto hover:opacity-60 transition duration-300"
                       />
                       <div className="px-3 pt-10 text-center">
-                        <h1 className="text-3xl font-semibold text-black">
+                        <h1 className="text-3xl">
                           {movie.title}
                         </h1>
-                        <p className="text-lg text-gray-500">
+                        <p className="text-lg">
                           {movie.release_date}
                         </p>
                       </div>

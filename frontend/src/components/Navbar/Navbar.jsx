@@ -32,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="top-0 left-0 w-full z-1000 bg-transparent">
+    <header className="top-0 left-0 w-full z-1000 bg-primaryColor">
       <div className="text-xl md:text-3xl flex justify-between px-20 py-4">
         <Link to="/" className="-m-1.5">
           <div className="flex items-center font-semibold">CineBites</div>

@@ -87,23 +87,19 @@ const MovieRecipe = () => {
           </h1>
         </div>
 
-        <div className="flex justify-center items-center gap-5 text-2xl">
+        <div className="flex justify-between text-5xl">
           <button
             onClick={() => handleTabClick("MOVIES")}
-            className={`px-9 py-3 text-primaryColor border border-primaryColor rounded-full hover:bg-primaryColor hover:text-secondaryColor ${
-              activeTab === "MOVIES"
-                ? "bg-primaryColor text-secondaryColor"
-                : ""
+            className={` hover:text-primaryColor ${
+              activeTab === "MOVIES" ? "text-primaryColor" : "text-gray-300"
             }`}
           >
             MOVIES
           </button>
           <button
             onClick={() => handleTabClick("RECIPES")}
-            className={`px-9 py-3 text-primaryColor border border-primaryColor rounded-full hover:bg-primaryColor hover:text-secondaryColor ${
-              activeTab === "RECIPES"
-                ? "bg-primaryColor text-secondaryColor"
-                : ""
+            className={` text-primaryColor hover:text-primaryColor ${
+              activeTab === "RECIPES" ? "text-primaryColor" : "text-gray-300"
             }`}
           >
             RECIPES
@@ -120,7 +116,6 @@ const MovieRecipe = () => {
                 isFlipped={flippedCards[recipe.id]}
                 onClick={() => handleCardClick(recipe.id)}
               />
-              
             ))}
           </div>
         )}
