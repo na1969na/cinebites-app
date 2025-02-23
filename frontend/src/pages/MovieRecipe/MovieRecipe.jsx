@@ -79,31 +79,29 @@ const MovieRecipe = () => {
   };
 
   return (
-    <div className="font-mori">
-      <div className="px-20 py-10">
-        <div className="mb-20">
-          <h1 className="text-9xl text-primaryColor font-semibold text-center">
-            {genreName}
-          </h1>
-        </div>
-
-        <div className="flex justify-between text-5xl">
-          <button
-            onClick={() => handleTabClick("MOVIES")}
-            className={` hover:text-primaryColor ${
-              activeTab === "MOVIES" ? "text-primaryColor" : "text-gray-300"
-            }`}
-          >
-            MOVIES
-          </button>
-          <button
-            onClick={() => handleTabClick("RECIPES")}
-            className={` text-primaryColor hover:text-primaryColor ${
-              activeTab === "RECIPES" ? "text-primaryColor" : "text-gray-300"
-            }`}
-          >
-            RECIPES
-          </button>
+    <div>
+      <div className="px-20 pt-24">
+        <div className="flex justify-between text-2xl">
+          <h1>Movies / {genreName}</h1>
+          <div className="flex justify-between">
+            <button
+              onClick={() => handleTabClick("MOVIES")}
+              className={`hover:text-black ${
+                activeTab === "MOVIES" ? "text-black" : "text-gray-300"
+              }`}
+            >
+              Movies
+            </button>
+            <p className="px-2">/</p>
+            <button
+              onClick={() => handleTabClick("RECIPES")}
+              className={`hover:text-black ${
+                activeTab === "RECIPES" ? "text-black" : "text-gray-300"
+              }`}
+            >
+              Recipes
+            </button>
+          </div>
         </div>
 
         {/* Recipe Tab */}
@@ -122,9 +120,9 @@ const MovieRecipe = () => {
 
         {/* Movie Tab */}
         {activeTab === "MOVIES" && (
-          <div className="px-20 py-10">
+          <div className="px-18 py-10">
             <div className="py-10 relative">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-20">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {movies &&
                   movies.map(
                     (movie) =>
@@ -145,12 +143,12 @@ const MovieRecipe = () => {
                               alt={movie.title}
                               className="w-full h-auto hover:opacity-60 transition duration-300"
                             />
-                            <div className="px-3 pt-10 text-center">
-                              <h1 className="text-3xl font-semibold text-black">
+                            <div className="px-3 pt-10">
+                              <h1 className="text-xl font-semibold">
                                 {movie.title}
                               </h1>
-                              <p className="text-lg text-gray-500">
-                                {movie.release_date}
+                              <p className="text-lg pt-2 pb-5">
+                                {new Date(movie.release_date).getFullYear()}
                               </p>
                             </div>
                           </Link>
@@ -158,9 +156,8 @@ const MovieRecipe = () => {
                       )
                   )}
 
-                {isLoading && <div>Carregando mais dados...</div>}
-                {isFetching && <div>Carregando mais dados...</div>}
-                {isError && <div>Carregando mais dados...</div>}
+                {isFetching && <div>Loading more data...</div>}
+                {isError && <div>Error loading data...</div>}
                 {movies && movies.length === 0 && <p>No movies found.</p>}
               </div>
             </div>

@@ -6,20 +6,22 @@ import MovieRecipe from "./pages/MovieRecipe/MovieRecipe";
 import Movies from "./pages/Movies/Movies";
 import Movie from "./pages/Movie/Movie";
 import SearchResults from "./pages/SearchResults/SearchResults";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 const App = () => {
   return (
     <div>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/movie-recipe" element={<MovieRecipe />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/movie" element={<Movie />} />
-            <Route path="/search" element={<SearchResults />} />
-          </Routes>
-        </Layout>
+      <Layout>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/movie-recipe" element={<MovieRecipe />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movie" element={<Movie />} />
+          <Route path="/search" element={<SearchResults />} />
+        </Routes>
+      </Layout>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const MovieGenreDisplay = () => {
   const { fetchGenres } = useMovieData();
+  const colors = ["bg-red-500", "bg-green-500", "bg-blue-500", "bg-yellow-500"];
 
   // Fetch genres
   const {
@@ -23,22 +24,24 @@ const MovieGenreDisplay = () => {
         complement your cinematic journey.
       </p>
       <div className="py-10">
-        {genres.map((genre) => (
-          <div key={genre.id}>
-            <Link
-              className="flex text-4xl px-10 py-3 text-primaryColor hover:pb-10 transition duration-300 cursor-pointer ease-in-out border-2 border-b-0 border-black rounded-t-2xl"
-              to={{
-                pathname: "/movie-recipe",
-              }}
-              state={{
-                genreId: genre.id,
-                genreName: genre.name,
-              }}
-            >
-              {genre.name}
-            </Link>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 px-5 py-10">
+          {genres.map((genre) => (
+            <div key={genre.id}>
+              <Link
+                className="flex text-4xl px-10 py-3 cursor-pointer border border-secondaryColor bg-primaryColor"
+                to={{
+                  pathname: "/movie-recipe",
+                }}
+                state={{
+                  genreId: genre.id,
+                  genreName: genre.name,
+                }}
+              >
+              ○ {genre.name}
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

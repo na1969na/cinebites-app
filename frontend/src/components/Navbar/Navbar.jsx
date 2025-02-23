@@ -32,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="top-0 left-0 w-full z-50 font-poppins fixed bg-fifthColor">
+    <header className="top-0 left-0 w-full z-50 fixed bg-fifthColor">
       <div className="flex items-center justify-between px-20 py-4">
         <Link to="/about" className="-m-1.5 text-lg">
           about

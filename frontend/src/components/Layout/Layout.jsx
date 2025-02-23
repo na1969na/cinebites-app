@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 
 const Layout = ({ children }) => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-poppins">
       <Navbar />
       <main>{children}</main>
       <Footer />

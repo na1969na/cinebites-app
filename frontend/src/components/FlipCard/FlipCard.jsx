@@ -4,7 +4,7 @@ const FlipCard = ({ data, isFlipped, onClick }) => {
   const { title, comment } = data;
   return (
     <div
-      className="relative w-100 h-72 cursor-pointer perspective-1000 m-2"
+      className="relative cursor-pointer perspective-1000 m-2 aspect-square"
       onClick={onClick}
     >
       <div
@@ -13,12 +13,12 @@ const FlipCard = ({ data, isFlipped, onClick }) => {
         }`}
       >
         {/* CardFront */}
-        <div className="absolute w-full h-full backface-hidden bg-primaryColor text-secondaryColor flex justify-center items-center">
-          <h2 className="text-4xl font-bold mb-2">{title}</h2>
+        <div className="absolute w-full h-full backface-hidden bg-sixthColor flex items-center rounded-sm p-5">
+          <h2 className="text-6xl">{title}</h2>
         </div>
 
         {/* CardBack */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 flex flex-col justify-center items-center border border-primaryColor p-10">
+        <div className="absolute w-full h-full backface-hidden rotate-y-180 flex flex-col justify-center items-center bg-fifthColor border border-sixthColor p-10">
           <p>{comment}</p>
         </div>
       </div>
