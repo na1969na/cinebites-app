@@ -15,7 +15,7 @@ const MovieGenreDisplay = () => {
   const genres = genresData || [];
 
   return (
-    <div className="py-12 px-20">
+    <div className="py-12 px-20 bg-fifthColor">
       <h1 className="text-xl sm:text-5xl md:text-3xl text-center text-black font-semibold">
         CHOOSE YOUR GENRE
       </h1>
@@ -24,11 +24,11 @@ const MovieGenreDisplay = () => {
         complement your cinematic journey.
       </p>
       <div className="py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 px-5 py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 px-5 py-10">
           {genres.map((genre) => (
             <div key={genre.id}>
               <Link
-                className="flex text-4xl px-10 py-3 cursor-pointer border border-secondaryColor bg-primaryColor"
+                className="flex justify-center text-4xl py-3 cursor-pointer border-2 border-black rounded-full hover:bg-black hover:text-fifthColor"
                 to={{
                   pathname: "/movie-recipe",
                 }}
@@ -37,7 +37,7 @@ const MovieGenreDisplay = () => {
                   genreName: genre.name,
                 }}
               >
-              ○ {genre.name}
+            {genre.name}
               </Link>
             </div>
           ))}
