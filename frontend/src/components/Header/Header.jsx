@@ -26,7 +26,7 @@ const Header = () => {
         </div>
       </div>
       <div className="bg-secondaryColor p-20"> 
-        <p>
+        <p> 
           At CineBites, we believe in making your movie experience even more
           enjoyable by pairing films with delicious recipes. Our app is designed
           to connect your love for cinema with culinary inspiration, all in one
