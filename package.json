@@ -10,19 +10,35 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
+    "@tanstack/react-query": "^5.65.1",
+    "axios": "^1.7.9",
+    "dompurify": "^3.2.2",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-debounce-input": "^3.3.0",
+    "react-dom": "^18.3.1",
+    "react-infinite-scroller": "^1.2.6",
+    "react-intersection-observer": "^9.15.1",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^7.0.1",
+    "tailwind-scrollbar-hide": "^2.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.15.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.12.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
     "vite": "^6.0.1"
   }
 }

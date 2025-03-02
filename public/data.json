@@ -1,0 +1,147 @@
+[
+  {
+    "id": 1,
+    "title": "Popcorn",
+    "comment": "This is a simple and classic snack that is perfect for movie nights or anytime you're craving something salty and crunchy.",
+    "image": "https://images.pexels.com/photos/3537844/pexels-photo-3537844.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "prepTime": "5",
+    "servings": "2",
+    "ingredients": [
+      "1/2 cup popcorn kernels",
+      "2 tbsp butter",
+      "Salt to taste"
+    ],
+    "recipe": "1. Heat the kernels in a pot until they pop.\n2. Melt butter in a separate pan.\n3. Drizzle the melted butter over the popcorn and sprinkle with salt."
+  },
+  {
+    "id": 2,
+    "title": "Nachos",
+    "comment": "These loaded nachos are a crowd-pleaser and can be customized with your favorite toppings like jalapeños, guacamole, or extra cheese.",
+    "image": "https://images.pexels.com/photos/6004182/pexels-photo-6004182.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "prepTime": "10",
+    "servings": "3",
+    "ingredients": [
+      "Tortilla chips",
+      "1 cup shredded cheese",
+      "1/2 cup sour cream",
+      "1/4 cup salsa",
+      "Jalapeños (optional)"
+    ],
+    "recipe": "1. Spread tortilla chips on a baking sheet.\n2. Sprinkle cheese on top and bake at 350°F (175°C) for 5   until cheese melts.\n3. Serve with sour cream, salsa, and jalapeños."
+  },
+  {
+    "id": 3,
+    "title": "Pizza Rolls",
+    "comment": "These pizza rolls are a fun twist on traditional pizza and are perfect for a quick and easy snack or appetizer.",
+    "image": "https://images.pexels.com/photos/2714722/pexels-photo-2714722.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "prepTime": "15",
+    "servings": "4",
+    "ingredients": [
+      "1 package pizza dough",
+      "1/2 cup tomato sauce",
+      "1 cup shredded mozzarella",
+      "Pepperoni slices"
+    ],
+    "recipe": "1. Roll out pizza dough and cut into small rectangles.\n2. Add a spoonful of tomato sauce, cheese, and pepperoni.\n3. Roll up the dough and bake at 375°F (190°C) for 10    ."
+  },
+  {
+    "id": 4,
+    "title": "Fruit Skewers",
+    "comment": "These fruit skewers are a healthy and colorful snack that is perfect for parties or as a light dessert.",
+    "image": "https://images.pexels.com/photos/65256/pomegranate-open-cores-fruit-fruit-logistica-65256.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "prepTime": "10",
+    "servings": "2",
+    "ingredients": ["Strawberries", "Grapes", "Pineapple chunks", "Watermelon"],
+    "recipe": "1. Cut fruits into bite-sized pieces.\n2. Thread the fruits onto skewers.\n3. Serve chilled for a refreshing snack."
+  },
+  {
+    "id": 5,
+    "title": "Chocolate Fondue",
+    "comment": "This chocolate fondue is a decadent treat that is perfect for dipping fruits or marshmallows for a sweet and indulgent snack.",
+    "image": "https://images.pexels.com/photos/29639675/pexels-photo-29639675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "prepTime": "15",
+    "servings": "4",
+    "ingredients": [
+      "200g dark chocolate",
+      "100ml heavy cream",
+      "Assorted fruits for dipping (strawberries, bananas, apple slices)"
+    ],
+    "recipe": "1. Melt chocolate and cream in a double boiler.\n2. Stir until smooth.\n3. Serve with fruit pieces for dipping."
+  },
+  {
+    "id": 6,
+    "title": "Cheese Platter",
+    "comment": "This cheese platter is a sophisticated and elegant snack that is perfect for entertaining guests or enjoying a quiet night in.",
+    "image": "https://images.pexels.com/photos/2122278/pexels-photo-2122278.jpeg",
+    "prepTime": "10",
+    "servings": "4",
+    "ingredients": [
+      "Various cheeses (cheddar, brie, goat cheese)",
+      "Crackers",
+      "Grapes or dried fruits"
+    ],
+    "recipe": "1. Arrange the cheeses on a platter.\n2. Add crackers and fruits for pairing.\n3. Serve immediately for a savory snack."
+  },
+  {
+    "id": 7,
+    "comment": "This classic combination of chips and guacamole is a simple and satisfying snack that is perfect for sharing with friends or enjoying on your own.",
+    "title": "Chips and Guacamole",
+    "image": "https://images.pexels.com/photos/5737580/pexels-photo-5737580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "prepTime": "10",
+    "servings": "3",
+    "ingredients": [
+      "Tortilla chips",
+      "2 ripe avocados",
+      "1/4 cup red onion, diced",
+      "1 lime",
+      "Salt and pepper to taste"
+    ],
+    "recipe": "1. Mash avocados and mix with red onion, lime juice, salt, and pepper.\n2. Serve with tortilla chips for dipping."
+  },
+  {
+    "id": 8,
+    "title": "Mini Sandwiches",
+    "comment": "These mini sandwiches are a quick and easy snack that is perfect for lunchboxes or picnics.",
+    "image": "https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg",
+    "prepTime": "15",
+    "servings": "4",
+    "ingredients": [
+      "Small bread rolls",
+      "Ham or turkey slices",
+      "Cheese slices",
+      "Lettuce"
+    ],
+    "recipe": "1. Cut bread rolls in half.\n2. Layer with ham, cheese, and lettuce.\n3. Serve immediately."
+  },
+  {
+    "id": 9,
+    "title": "Popcorn Chicken",
+    "comment": "These crispy popcorn chicken bites are a delicious and satisfying snack that is perfect for parties or as a quick and easy meal.",
+    "image": "https://images.pexels.com/photos/29631422/pexels-photo-29631422.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "prepTime": "20",
+    "servings": "3",
+    "ingredients": [
+      "500g chicken breast, cut into small pieces",
+      "1 cup breadcrumbs",
+      "1/4 cup grated parmesan",
+      "1 egg",
+      "Salt and pepper to taste"
+    ],
+    "recipe": "1. Coat chicken pieces in breadcrumbs mixed with parmesan.\n2. Fry or bake at 375°F (190°C) for 10-15     until golden and crispy."
+  },
+  {
+    "id": 10,
+    "title": "Veggie Sticks with Hummus",
+    "comment": "These veggie sticks with hummus are a healthy and satisfying snack that is perfect for a quick pick-me-up or as a light appetizer.",
+    "image": "https://images.pexels.com/photos/21856024/pexels-photo-21856024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "prepTime": "10",
+    "servings": "2",
+    "ingredients": [
+      "Carrot sticks",
+      "Celery sticks",
+      "Cucumber sticks",
+      "Hummus for dipping"
+    ],
+    "recipe": "1. Slice vegetables into sticks.\n2. Serve with a side of hummus for dipping."
+  }
+]
