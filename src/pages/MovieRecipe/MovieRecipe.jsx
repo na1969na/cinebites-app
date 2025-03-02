@@ -9,10 +9,9 @@ const MovieRecipe = () => {
   const location = useLocation();
   const { genreId, genreName } = location.state || {};
   const { fetchPopularMoviesByGenre } = useMovieData();
-  const [recipes, setRecipes] = useState([]);
   const [activeTab, setActiveTab] = useState("MOVIES");
   const observer = useRef();
-  const [flippedCards, setFlippedCards] = useState(new Array(10).fill(false));
+  const [flippedCards, setFlippedCards] = useState([]);
 
   // Fetch Popular Movies by Genre ID
   const { data, fetchNextPage, hasNextPage, isFetching, isLoading, isError } =
@@ -49,24 +48,21 @@ const MovieRecipe = () => {
     }, []);
   }, [data]);
 
-  // Fetch recipes
-  useEffect(() => {
-    fetch("/data.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setRecipes(data);
-      });
-  }, []);
+  const {
+    data: recipes,
+    isLoading: isRecipeLoading,
+    isError: isRecipeError,
+  } = useQuery({
+    queryKey: ["gemini", genreName],
+    queryFn: () => generateContent(genreName),
+    enabled: !!genreName,
+  });
 
-  // const {
-  //   data: recipes,
-  //   isLoading: isRecipeLoading,
-  //   isError: isRecipeError,
-  // } = useQuery({
-  //   queryKey: ["gemini", genreName],
-  //   queryFn: generateContent(genreName),
-  //   enabled: false,
-  // });
+  useEffect(() => {
+    if (recipes) {
+      setFlippedCards(new Array(recipes.length).fill(false));
+    }
+  }, [recipes]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -107,14 +103,17 @@ const MovieRecipe = () => {
         {/* Recipe Tab */}
         {activeTab === "RECIPES" && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-5 py-10">
-            {recipes.map((recipe) => (
-              <FlipCard
-                key={recipe.id}
-                data={recipe}
-                isFlipped={flippedCards[recipe.id]}
-                onClick={() => handleCardClick(recipe.id)}
-              />
-            ))}
+            {isRecipeLoading && <div>Loading recipes...</div>}
+            {isRecipeError && <div>Error loading recipes...</div>}
+            {recipes &&
+              recipes.map((recipe, index) => (
+                <FlipCard
+                  key={recipe.id}
+                  data={recipe}
+                  isFlipped={flippedCards[index] || false}
+                  onClick={() => handleCardClick(index)}
+                />
+              ))}
           </div>
         )}
 
@@ -123,6 +122,7 @@ const MovieRecipe = () => {
           <div className="px-18 py-10">
             <div className="py-10 relative">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                {isLoading && <div>Loading movies...</div>}
                 {movies &&
                   movies.map(
                     (movie) =>
